@@ -1,9 +1,23 @@
-# Introduction
+# System Components
 
-This is a book created from markdown and executable code.
+The FinCatch data system is comprised of a number of separate components, including:
 
-See @knuth84 for additional discussion of literate programming.
+## FinCatch 
 
-```{r}
-1 + 1
-```
+FinCatch is the central website that provides data management capabilities as well as links to other components. FinCatch is written in the asp.mvc framework of .NET 6.
+
+## FinCatch Database 
+
+The backend database for FinCatch is built in Microsoft SQL Server.
+
+## FinCatchDE 
+
+## FinCatchAG 
+
+## FinCatchRA 
+
+## FinCatchAnalysis R Package 
+
+## FinCatchAccess R Package 
+
+## FinCatchWebApi 

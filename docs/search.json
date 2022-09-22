@@ -4,27 +4,97 @@
     "href": "index.html",
     "title": "FinCatch Documentation",
     "section": "",
-    "text": "This is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 + 1\n\n[1] 2"
+    "text": "This is documentation for the FinCatch Data System of the Nebraska Game and Parks Fishery Division. FinCatch stores and provides analysis of standard fisheries population surveys. This set of documentation is an accumulation of both developmental and instructional documentation."
   },
   {
     "objectID": "intro.html",
     "href": "intro.html",
-    "title": "1  Introduction",
+    "title": "System Components",
     "section": "",
-    "text": "See Knuth (1984) for additional discussion of literate programming.\n\n1 + 1\n\n[1] 2\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+    "text": "The FinCatch data system is comprised of a number of separate components, including:"
   },
   {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "2  Summary",
-    "section": "",
-    "text": "1 + 1\n\n[1] 2"
+    "objectID": "intro.html#fincatch",
+    "href": "intro.html#fincatch",
+    "title": "System Components",
+    "section": "FinCatch",
+    "text": "FinCatch\nFinCatch is the central website that provides data management capabilities as well as links to other components. FinCatch is written in the asp.mvc framework of .NET 6."
   },
   {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
+    "objectID": "intro.html#fincatch-database",
+    "href": "intro.html#fincatch-database",
+    "title": "System Components",
+    "section": "FinCatch Database",
+    "text": "FinCatch Database\nThe backend database for FinCatch is built in Microsoft SQL Server."
+  },
+  {
+    "objectID": "intro.html#fincatchde",
+    "href": "intro.html#fincatchde",
+    "title": "System Components",
+    "section": "FinCatchDE",
+    "text": "FinCatchDE"
+  },
+  {
+    "objectID": "intro.html#fincatchag",
+    "href": "intro.html#fincatchag",
+    "title": "System Components",
+    "section": "FinCatchAG",
+    "text": "FinCatchAG"
+  },
+  {
+    "objectID": "intro.html#fincatchra",
+    "href": "intro.html#fincatchra",
+    "title": "System Components",
+    "section": "FinCatchRA",
+    "text": "FinCatchRA"
+  },
+  {
+    "objectID": "intro.html#fincatchanalysis-r-package",
+    "href": "intro.html#fincatchanalysis-r-package",
+    "title": "System Components",
+    "section": "FinCatchAnalysis R Package",
+    "text": "FinCatchAnalysis R Package"
+  },
+  {
+    "objectID": "intro.html#fincatchaccess-r-package",
+    "href": "intro.html#fincatchaccess-r-package",
+    "title": "System Components",
+    "section": "FinCatchAccess R Package",
+    "text": "FinCatchAccess R Package"
+  },
+  {
+    "objectID": "intro.html#fincatchwebapi",
+    "href": "intro.html#fincatchwebapi",
+    "title": "System Components",
+    "section": "FinCatchWebApi",
+    "text": "FinCatchWebApi"
+  },
+  {
+    "objectID": "FinCatchAnalysis_0.html",
+    "href": "FinCatchAnalysis_0.html",
+    "title": "Analysis R Package",
     "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+    "text": "The FinCatchAnalysis (FCA) R package centralizes standard analysis functions for the FinCatch system and promotes DRY and reusable analysis code practices. The FCA package is built on top of R6 classes which provides a standard programming interface for users of the R package. Analysis functions are available for each individual analysis available and results from each analysis function returns results encapsulated in an R6 class object. All public functions in the package are prefixed with “fca_”. Package R6 objects are prefixed with “fco_”."
+  },
+  {
+    "objectID": "FinCatchAnalysis_0.html#analysis-functions",
+    "href": "FinCatchAnalysis_0.html#analysis-functions",
+    "title": "Analysis R Package",
+    "section": "Analysis Functions",
+    "text": "Analysis Functions\nEach analysis function in the FCA package provides a single call for an independent analysis and returns a function specific R6 object built on the base fco_ object that provides standard methods and data objects."
+  },
+  {
+    "objectID": "FinCatchAnalysis_0.html#analysis-return-objects",
+    "href": "FinCatchAnalysis_0.html#analysis-return-objects",
+    "title": "Analysis R Package",
+    "section": "Analysis Return Objects",
+    "text": "Analysis Return Objects"
+  },
+  {
+    "objectID": "FinCatchAnalysis_1_Objects.html#overriding-base-object",
+    "href": "FinCatchAnalysis_1_Objects.html#overriding-base-object",
+    "title": "1  Objects",
+    "section": "1.2 Overriding Base Object",
+    "text": "1.2 Overriding Base Object"
   }
 ]

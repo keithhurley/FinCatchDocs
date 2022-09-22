@@ -1,0 +1,11 @@
+# Analysis R Package
+
+## Overview {.unnumbered}
+
+The FinCatchAnalysis (FCA) R package centralizes standard analysis functions for the FinCatch system and promotes DRY and reusable analysis code practices. The FCA package is built on top of R6 classes which provides a standard programming interface for users of the R package. Analysis functions are available for each individual analysis available and results from each analysis function returns results encapsulated in an R6 class object. All public functions in the package are prefixed with "fca\_". Package R6 objects are prefixed with "fco\_".
+
+## Analysis Functions {.numbered}
+
+Each analysis function in the FCA package provides a single call for an independent analysis and returns a function specific R6 object built on the base fco\_ object that provides standard methods and data objects.
+
+## Analysis Return Objects  

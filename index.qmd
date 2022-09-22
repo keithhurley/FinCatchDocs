@@ -1,9 +1,5 @@
-# Preface {.unnumbered}
+# Home {#Home .unnumbered .hidden}
 
-This is a Quarto book.
+# 
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
-
-```{r}
-1 + 1
-```
+This is documentation for the FinCatch Data System of the Nebraska Game and Parks Fishery Division. FinCatch stores and provides analysis of standard fisheries population surveys. This set of documentation is an accumulation of both developmental and instructional documentation.

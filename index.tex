@@ -1,0 +1,299 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrreprt}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{5}
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={FinCatch Documentation},
+  pdfauthor={Keith Hurley et al},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{FinCatch Documentation}
+\author{Keith Hurley et al}
+\date{\texttt{r\ format(Sys.time(),\ \textquotesingle{}\%d\ \%B,\ \%Y\textquotesingle{})}}
+
+\begin{document}
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, boxrule=0pt, sharp corners, enhanced, borderline west={3pt}{0pt}{shadecolor}, frame hidden, interior hidden]}{\end{tcolorbox}}\fi
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\bookmarksetup{startatroot}
+
+\hypertarget{Home}{%
+\chapter*{Home}\label{Home}}
+\addcontentsline{toc}{chapter}{Home}
+
+This is documentation for the FinCatch Data System of the Nebraska Game
+and Parks Fishery Division. FinCatch stores and provides analysis of
+standard fisheries population surveys. This set of documentation is an
+accumulation of both developmental and instructional documentation.
+
+\part{System Components}
+
+The FinCatch data system is comprised of a number of separate
+components, including:
+
+\hypertarget{fincatch}{%
+\subsection*{FinCatch}\label{fincatch}}
+\addcontentsline{toc}{subsection}{FinCatch}
+
+FinCatch is the central website that provides data management
+capabilities as well as links to other components. FinCatch is written
+in the asp.mvc framework of .NET 6.
+
+\hypertarget{fincatch-database}{%
+\subsection*{FinCatch Database}\label{fincatch-database}}
+\addcontentsline{toc}{subsection}{FinCatch Database}
+
+The backend database for FinCatch is built in Microsoft SQL Server.
+
+\hypertarget{fincatchde}{%
+\subsection*{FinCatchDE}\label{fincatchde}}
+\addcontentsline{toc}{subsection}{FinCatchDE}
+
+\hypertarget{fincatchag}{%
+\subsection*{FinCatchAG}\label{fincatchag}}
+\addcontentsline{toc}{subsection}{FinCatchAG}
+
+\hypertarget{fincatchra}{%
+\subsection*{FinCatchRA}\label{fincatchra}}
+\addcontentsline{toc}{subsection}{FinCatchRA}
+
+\hypertarget{fincatchanalysis-r-package}{%
+\subsection*{FinCatchAnalysis R
+Package}\label{fincatchanalysis-r-package}}
+\addcontentsline{toc}{subsection}{FinCatchAnalysis R Package}
+
+\hypertarget{fincatchaccess-r-package}{%
+\subsection*{FinCatchAccess R Package}\label{fincatchaccess-r-package}}
+\addcontentsline{toc}{subsection}{FinCatchAccess R Package}
+
+\hypertarget{fincatchwebapi}{%
+\subsection*{FinCatchWebApi}\label{fincatchwebapi}}
+\addcontentsline{toc}{subsection}{FinCatchWebApi}
+
+\part{Analysis R Package}
+
+\hypertarget{overview}{%
+\section*{Overview}\label{overview}}
+\addcontentsline{toc}{section}{Overview}
+
+The FinCatchAnalysis (FCA) R package centralizes standard analysis
+functions for the FinCatch system and promotes DRY and reusable analysis
+code practices. The FCA package is built on top of R6 classes which
+provides a standard programming interface for users of the R package.
+Analysis functions are available for each individual analysis available
+and results from each analysis function returns results encapsulated in
+an R6 class object. All public functions in the package are prefixed
+with ``fca\_''. Package R6 objects are prefixed with ``fco\_''.
+
+\hypertarget{analysis-functions}{%
+\section*{Analysis Functions}\label{analysis-functions}}
+\addcontentsline{toc}{section}{Analysis Functions}
+
+Each analysis function in the FCA package provides a single call for an
+independent analysis and returns a function specific R6 object built on
+the base fco\_ object that provides standard methods and data objects.
+
+\hypertarget{analysis-return-objects}{%
+\section*{Analysis Return Objects}\label{analysis-return-objects}}
+\addcontentsline{toc}{section}{Analysis Return Objects}
+
+\hypertarget{fincatchanalysis-r-package-1}{%
+\chapter{FinCatchAnalysis R
+Package}\label{fincatchanalysis-r-package-1}}
+
+\hypertarget{overview-1}{%
+\section*{Overview}\label{overview-1}}
+\addcontentsline{toc}{section}{Overview}
+
+The FinCatchAnalysis (FCA) R package centralizes standard analysis
+functions for the FinCatch system and promotes DRY and reusable analysis
+code practices. The FCA package is built on top of R6 classes which
+provides a standard programming interface for users of the R package.
+All public functions in the package are prefixed with ``fca\_''. Package
+R6 objects are prefixed with ``fco\_''.
+
+\hypertarget{analysis-functions-1}{%
+\section{Analysis Functions}\label{analysis-functions-1}}
+
+Each analysis function in the FCA package provides a single call for an
+independent analysis and returns a function specific R6 object built on
+the base fco\_ object that provides standard methods and data objects.
+
+\hypertarget{analysis-return-objects-1}{%
+\section{Analysis Return Objects}\label{analysis-return-objects-1}}
+
+\part{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{0}{0}
+\end{CSLReferences}
+
+
+
+\end{document}
