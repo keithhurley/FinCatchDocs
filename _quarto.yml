@@ -2,9 +2,9 @@ project:
   type: book
 
 book:
-  title: "FinCatchDocs"
-  author: "Jane Doe"
-  date: "9/22/2022"
+  title: "FinCatch Documentation"
+  author: "Keith Hurley et al"
+  date: "`r format(Sys.time(), '%d %B, %Y')`" 
   chapters:
     - index.qmd
     - intro.qmd
