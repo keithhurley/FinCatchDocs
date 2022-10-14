@@ -2,22 +2,22 @@
 
 The FinCatch data system is comprised of a number of separate components, including:
 
-## FinCatch 
+## FinCatch
 
 FinCatch is the central website that provides data management capabilities as well as links to other components. FinCatch is written in the asp.mvc framework of .NET 6.
 
-## FinCatch Database 
+## FinCatch Database
 
 The backend database for FinCatch is built in Microsoft SQL Server.
 
-## FinCatchDE 
+## FinCatchDE
 
-## FinCatchAG 
+## FinCatchAG
 
-## FinCatchRA 
+## FinCatchRA
 
-## FinCatchAnalysis R Package 
+## FinCatchAnalysis R Package
 
-## FinCatchAccess R Package 
+## FinCatchAccess R Package
 
-## FinCatchWebApi 
+## FinCatchWebApi

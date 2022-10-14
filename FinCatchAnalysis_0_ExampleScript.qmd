@@ -1,0 +1,17 @@
+# Example Script
+
+| library(DataAccessPackage) 
+| library(AnalysisPackage)
+| 
+| #create data access object 
+| dAccess\<-myAccess\$new
+| 
+| #create data store 
+| dStore\<-myData\$new(dAccess)
+| 
+| #run counts analysis 
+| countResults\<-fca_Counts(dStore)
+| 
+| #display analysis
+| countResults\$results
+| countResults\$printTablesHtml

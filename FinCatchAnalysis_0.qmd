@@ -8,4 +8,4 @@ The FinCatchAnalysis (FCA) R package centralizes standard analysis functions for
 
 Each analysis function in the FCA package provides a single call for an independent analysis and returns a function specific R6 object built on the base fco\_ object that provides standard methods and data objects.
 
-## Analysis Return Objects  
+## Analysis Return Objects

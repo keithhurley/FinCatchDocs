@@ -1,0 +1,49 @@
+# Base Object
+
+## Purpose
+
+Provides a common interface for results regardless of what analysis is run.
+
+### Variables
+
+-   titleText - (string) Title text to be used on all object tables
+
+-   groupByVars - (string) Comma-separated string of variable name to use as grouping variables within the table
+
+-   surveys - (dataframe) Dataframe containing survey-level data
+
+-   samples - (dataframe) Dataframe containing samples
+
+-   results - (list of dataframes) List of dataframes containing results of analysis
+
+-   plots - (list of ggplot objects) List of ggPlot objects created from analysis
+
+-   errorMessage - (list of string) Error messages created during analysis
+
+-   groupHeaderBackgroundColor - (string) Color to be used in background of group header within table, groups are determined by the groupByVars variable, used in HTML outputs only
+
+-   groupSummaryBackgroundColor - (string) Color to be used in the summary row of each group within table, groups are determined by the groupByVars variable, used in HTML outputs only
+
+-   gtTheme - (string) Name of gt tables theme from the gtExtras package, used in HTML outputs only
+
+### Methods
+
+-   print - method used by R to print results to console
+
+-   exportJson - method used to create and save Json file of results
+
+-   exportCsv - method used to create and save Csv file of results
+
+-   createTable - generic table to create both Latex and Html tables for object
+
+-   createTableLatex
+
+-   createTableHtml
+
+-   printTablesLatex
+
+-   printTablesHtml
+
+-   iterateSurvey
+
+## Overriding Base Object

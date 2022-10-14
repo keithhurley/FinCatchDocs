@@ -12,7 +12,12 @@ book:
     - part: intro.qmd
     - part: FinCatchAnalysis_0.qmd
       chapters:
+        - FinCatchAnalysis_0_Architecture.qmd
+        - FinCatchAnalysis_0_ExampleScript.qmd
+        - FinCatchAnalysis_0_BaseObject.qmd
         - FinCatchAnalysis_1_Objects.qmd
+        - FinCatchAnalysis_1_Methods.qmd
+        - FinCatchAnalysis_2_CreateAnalysis.qmd
     - part: references.qmd
   number-depth: 2
   toc-depth: 2

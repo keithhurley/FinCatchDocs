@@ -1,0 +1,27 @@
+# Architecture
+
+## Packages
+
+![](ArchVis/Slide1.PNG)
+
+## WorkFlow
+
+![](ArchVis/Slide2.PNG)
+
+## Principles
+
+By Using myData Object:
+
+-   Only data that's needed is loaded
+
+-   Data is cached
+
+-   Data is only retrieved once for entire analysis string
+
+By Using Separate Data Access Package:
+
+-   Isolates and generalizes data access
+
+-   Allows analysis code to use different sources of data
+
+-   Allows different scripts to use different authentications for data access

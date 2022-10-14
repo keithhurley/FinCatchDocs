@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FinCatch Documentation - 4&nbsp; Objects</title>
+<title>FinCatch Documentation - 3&nbsp; Base Object</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./FinCatchAnalysis_1_Methods.html" rel="next">
-<link href="./FinCatchAnalysis_0_BaseObject.html" rel="prev">
+<link href="./FinCatchAnalysis_1_Objects.html" rel="next">
+<link href="./FinCatchAnalysis_0_ExampleScript.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Objects</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Base Object</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -121,12 +121,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FinCatchAnalysis_0_BaseObject.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Base Object</span></a>
+  <a href="./FinCatchAnalysis_0_BaseObject.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Base Object</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FinCatchAnalysis_1_Objects.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Objects</span></a>
+  <a href="./FinCatchAnalysis_1_Objects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Objects</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -153,8 +153,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#fc_counts-object" id="toc-fc_counts-object" class="nav-link active" data-scroll-target="#fc_counts-object"><span class="toc-section-number">4.1</span>  fc_counts Object</a></li>
-  <li><a href="#fc_fishsamplemedtadata" id="toc-fc_fishsamplemedtadata" class="nav-link" data-scroll-target="#fc_fishsamplemedtadata"><span class="toc-section-number">4.2</span>  fc_fishSampleMedtadata</a></li>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose"><span class="toc-section-number">3.1</span>  Purpose</a>
+  <ul class="collapse">
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="toc-section-number">3.1.1</span>  Variables</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="toc-section-number">3.1.2</span>  Methods</a></li>
+  </ul></li>
+  <li><a href="#overriding-base-object" id="toc-overriding-base-object" class="nav-link" data-scroll-target="#overriding-base-object"><span class="toc-section-number">3.2</span>  Overriding Base Object</a></li>
   </ul>
 </nav>
     </div>
@@ -163,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Objects</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Base Object</span></h1>
 </div>
 
 
@@ -177,11 +181,41 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="fc_counts-object" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="fc_counts-object"><span class="header-section-number">4.1</span> fc_counts Object</h2>
+<section id="purpose" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">3.1</span> Purpose</h2>
+<p>Provides a common interface for results regardless of what analysis is run.</p>
+<section id="variables" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="variables"><span class="header-section-number">3.1.1</span> Variables</h3>
+<ul>
+<li><p>titleText - (string) Title text to be used on all object tables</p></li>
+<li><p>groupByVars - (string) Comma-separated string of variable name to use as grouping variables within the table</p></li>
+<li><p>surveys - (dataframe) Dataframe containing survey-level data</p></li>
+<li><p>samples - (dataframe) Dataframe containing samples</p></li>
+<li><p>results - (list of dataframes) List of dataframes containing results of analysis</p></li>
+<li><p>plots - (list of ggplot objects) List of ggPlot objects created from analysis</p></li>
+<li><p>errorMessage - (list of string) Error messages created during analysis</p></li>
+<li><p>groupHeaderBackgroundColor - (string) Color to be used in background of group header within table, groups are determined by the groupByVars variable, used in HTML outputs only</p></li>
+<li><p>groupSummaryBackgroundColor - (string) Color to be used in the summary row of each group within table, groups are determined by the groupByVars variable, used in HTML outputs only</p></li>
+<li><p>gtTheme - (string) Name of gt tables theme from the gtExtras package, used in HTML outputs only</p></li>
+</ul>
 </section>
-<section id="fc_fishsamplemedtadata" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="fc_fishsamplemedtadata"><span class="header-section-number">4.2</span> fc_fishSampleMedtadata</h2>
+<section id="methods" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="methods"><span class="header-section-number">3.1.2</span> Methods</h3>
+<ul>
+<li><p>print - method used by R to print results to console</p></li>
+<li><p>exportJson - method used to create and save Json file of results</p></li>
+<li><p>exportCsv - method used to create and save Csv file of results</p></li>
+<li><p>createTable - generic table to create both Latex and Html tables for object</p></li>
+<li><p>createTableLatex</p></li>
+<li><p>createTableHtml</p></li>
+<li><p>printTablesLatex</p></li>
+<li><p>printTablesHtml</p></li>
+<li><p>iterateSurvey</p></li>
+</ul>
+</section>
+</section>
+<section id="overriding-base-object" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="overriding-base-object"><span class="header-section-number">3.2</span> Overriding Base Object</h2>
 
 
 </section>
@@ -287,13 +321,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./FinCatchAnalysis_0_BaseObject.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Base Object</span></span>
+      <a href="./FinCatchAnalysis_0_ExampleScript.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Example Script</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./FinCatchAnalysis_1_Methods.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Methods</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./FinCatchAnalysis_1_Objects.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Objects</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

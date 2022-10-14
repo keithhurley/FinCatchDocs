@@ -1,0 +1,11 @@
+# Methods
+
+## fca_counts
+
+-   summarizes number of fish caught in samples by species and gender
+-   returns fc_counts object
+
+## fca_fishSampleMetadata
+
+-   returns metadata for fish samples included in analysis
+-   returns fc_fishSampleMetadata object
