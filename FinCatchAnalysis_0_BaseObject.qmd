@@ -6,7 +6,9 @@ Provides a common interface for results regardless of what analysis is run.
 
 ### Variables
 
--   titleText - (string) Title text to be used on all object tables
+-   descriptionText - (string) Markdown text to be displayed in outputs prior to the output tables and figures
+
+-   tableTitle- (string) Title text to be used on all object tables
 
 -   groupByVars - (string) Comma-separated string of variable name to use as grouping variables within the table
 
