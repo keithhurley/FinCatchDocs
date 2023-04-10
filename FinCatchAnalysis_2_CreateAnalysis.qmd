@@ -1,3 +1,11 @@
 # Create Analysis
 
+Make sure to test for:
 
+-   Data selected by surveys only
+
+-   Data selected by samples only
+
+-   Data selected by both surveys and samples
+
+-   Filters that return NO data

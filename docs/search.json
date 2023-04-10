@@ -4,14 +4,7 @@
     "href": "index.html",
     "title": "FinCatch Documentation",
     "section": "",
-    "text": "This is documentation for the FinCatch Data System of the Nebraska Game and Parks Fishery Division. FinCatch stores and provides analysis of standard fisheries population surveys. This set of documentation is an accumulation of both developmental and instructional documentation."
-  },
-  {
-    "objectID": "intro.html",
-    "href": "intro.html",
-    "title": "System Components",
-    "section": "",
-    "text": "The FinCatch data system is comprised of a number of separate components, including:"
+    "text": "Home\n\n\n\nThis is documentation for the FinCatch Data System of the Nebraska Game and Parks Fishery Division. FinCatch stores and provides analysis of standard fisheries population surveys. This set of documentation is an accumulation of both developmental and instructional documentation."
   },
   {
     "objectID": "intro.html#fincatch",
@@ -70,11 +63,11 @@
     "text": "FinCatchWebApi"
   },
   {
-    "objectID": "FinCatchAnalysis_0.html",
-    "href": "FinCatchAnalysis_0.html",
+    "objectID": "FinCatchAnalysis_0.html#overview",
+    "href": "FinCatchAnalysis_0.html#overview",
     "title": "Analysis R Package",
-    "section": "",
-    "text": "The FinCatchAnalysis (FCA) R package centralizes standard analysis functions for the FinCatch system and promotes DRY and reusable analysis code practices. The FCA package is built on top of R6 classes which provides a standard programming interface for users of the R package. Analysis functions are available for each individual analysis available and results from each analysis function returns results encapsulated in an R6 class object. All public functions in the package are prefixed with “fca_”. Package R6 objects are prefixed with “fco_”."
+    "section": "Overview",
+    "text": "Overview\nThe FinCatchAnalysis (FCA) R package centralizes standard analysis functions for the FinCatch system and promotes DRY and reusable analysis code practices. The FCA package is built on top of R6 classes which provides a standard programming interface for users of the R package. Analysis functions are available for each individual analysis available and results from each analysis function returns results encapsulated in an R6 class object. All public functions in the package are prefixed with “fca_”. Package R6 objects are prefixed with “fco_”."
   },
   {
     "objectID": "FinCatchAnalysis_0.html#analysis-functions",
@@ -89,6 +82,13 @@
     "title": "Analysis R Package",
     "section": "Analysis Return Objects",
     "text": "Analysis Return Objects"
+  },
+  {
+    "objectID": "FinCatchAnalysis_0_Architecture.html#packages",
+    "href": "FinCatchAnalysis_0_Architecture.html#packages",
+    "title": "1  Architecture",
+    "section": "1.1 Packages",
+    "text": "1.1 Packages"
   },
   {
     "objectID": "FinCatchAnalysis_0_Architecture.html#workflow",
@@ -109,14 +109,14 @@
     "href": "FinCatchAnalysis_0_ExampleScript.html",
     "title": "2  Example Script",
     "section": "",
-    "text": "library(DataAccessPackage)\nlibrary(AnalysisPackage)\n\n#create data access object\ndAccess<-myAccess$new\n\n#create data store\ndStore<-myData$new(dAccess)\n\n#run counts analysis\ncountResults<-fca_Counts(dStore)\n\n#display analysis\ncountResults$results\ncountResults$printTablesHtml"
+    "text": "library(DataAccessPackage)\nlibrary(AnalysisPackage)\n\n#create data access object\ndAccess&lt;-myAccess$new\n\n#create data store\ndStore&lt;-myData$new(dAccess)\n\n#run counts analysis\ncountResults&lt;-fca_Counts(dStore)\n\n#display analysis\ncountResults$results\ncountResults$printTablesHtml"
   },
   {
-    "objectID": "FinCatchAnalysis_0_BaseObject.html",
-    "href": "FinCatchAnalysis_0_BaseObject.html",
+    "objectID": "FinCatchAnalysis_0_BaseObject.html#purpose",
+    "href": "FinCatchAnalysis_0_BaseObject.html#purpose",
     "title": "3  Base Object",
-    "section": "",
-    "text": "Provides a common interface for results regardless of what analysis is run.\n\n\n\ndescriptionText - (string) Markdown text to be displayed in outputs prior to the output tables and figures\ntableTitle- (string) Title text to be used on all object tables\ngroupByVars - (string) Comma-separated string of variable name to use as grouping variables within the table\nsurveys - (dataframe) Dataframe containing survey-level data\nsamples - (dataframe) Dataframe containing samples\nresults - (list of dataframes) List of dataframes containing results of analysis\nplots - (list of ggplot objects) List of ggPlot objects created from analysis\nerrorMessage - (list of string) Error messages created during analysis\ngroupHeaderBackgroundColor - (string) Color to be used in background of group header within table, groups are determined by the groupByVars variable, used in HTML outputs only\ngroupSummaryBackgroundColor - (string) Color to be used in the summary row of each group within table, groups are determined by the groupByVars variable, used in HTML outputs only\ngtTheme - (string) Name of gt tables theme from the gtExtras package, used in HTML outputs only\n\n\n\n\n\nprint - method used by R to print results to console\nexportJson - method used to create and save Json file of results\nexportCsv - method used to create and save Csv file of results\ncreateTable - generic table to create both Latex and Html tables for object\ncreateTableLatex\ncreateTableHtml\nprintTablesLatex\nprintTablesHtml\niterateSurvey"
+    "section": "3.1 Purpose",
+    "text": "3.1 Purpose\nProvides a common interface for results regardless of what analysis is run.\n\n3.1.1 Variables\n\ndescriptionText - (string) Markdown text to be displayed in outputs prior to the output tables and figures\ntableTitle- (string) Title text to be used on all object tables\ngroupByVars - (string) Comma-separated string of variable name to use as grouping variables within the table\nsurveys - (dataframe) Dataframe containing survey-level data\nsamples - (dataframe) Dataframe containing samples\nresults - (list of dataframes) List of dataframes containing results of analysis\nplots - (list of ggplot objects) List of ggPlot objects created from analysis\nerrorMessage - (list of string) Error messages created during analysis\ngroupHeaderBackgroundColor - (string) Color to be used in background of group header within table, groups are determined by the groupByVars variable, used in HTML outputs only\ngroupSummaryBackgroundColor - (string) Color to be used in the summary row of each group within table, groups are determined by the groupByVars variable, used in HTML outputs only\ngtTheme - (string) Name of gt tables theme from the gtExtras package, used in HTML outputs only\n\n\n\n3.1.2 Methods\n\nprint - method used by R to print results to console\nexportJson - method used to create and save Json file of results\nexportCsv - method used to create and save Csv file of results\ncreateTable - generic table to create both Latex and Html tables for object\ncreateTableLatex\ncreateTableHtml\nprintTablesLatex\nprintTablesHtml\niterateSurvey"
   },
   {
     "objectID": "FinCatchAnalysis_0_BaseObject.html#overriding-base-object",
@@ -126,6 +126,13 @@
     "text": "3.2 Overriding Base Object"
   },
   {
+    "objectID": "FinCatchAnalysis_1_Objects.html#fc_counts-object",
+    "href": "FinCatchAnalysis_1_Objects.html#fc_counts-object",
+    "title": "4  Objects",
+    "section": "4.1 fc_counts Object",
+    "text": "4.1 fc_counts Object"
+  },
+  {
     "objectID": "FinCatchAnalysis_1_Objects.html#fc_fishsamplemedtadata",
     "href": "FinCatchAnalysis_1_Objects.html#fc_fishsamplemedtadata",
     "title": "4  Objects",
@@ -133,11 +140,11 @@
     "text": "4.2 fc_fishSampleMedtadata"
   },
   {
-    "objectID": "FinCatchAnalysis_1_Methods.html",
-    "href": "FinCatchAnalysis_1_Methods.html",
+    "objectID": "FinCatchAnalysis_1_Methods.html#fca_counts",
+    "href": "FinCatchAnalysis_1_Methods.html#fca_counts",
     "title": "5  Methods",
-    "section": "",
-    "text": "summarizes number of fish caught in samples by species and gender\nreturns fc_counts object"
+    "section": "5.1 fca_counts",
+    "text": "5.1 fca_counts\n\nsummarizes number of fish caught in samples by species and gender\nreturns fc_counts object"
   },
   {
     "objectID": "FinCatchAnalysis_1_Methods.html#fca_fishsamplemetadata",
@@ -145,5 +152,12 @@
     "title": "5  Methods",
     "section": "5.2 fca_fishSampleMetadata",
     "text": "5.2 fca_fishSampleMetadata\n\nreturns metadata for fish samples included in analysis\nreturns fc_fishSampleMetadata object"
+  },
+  {
+    "objectID": "FinCatchAnalysis_2_CreateAnalysis.html",
+    "href": "FinCatchAnalysis_2_CreateAnalysis.html",
+    "title": "6  Create Analysis",
+    "section": "",
+    "text": "Make sure to test for:\n\nData selected by surveys only\nData selected by samples only\nData selected by both surveys and samples\nFilters that return NO data"
   }
 ]

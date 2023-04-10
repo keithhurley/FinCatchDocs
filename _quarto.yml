@@ -19,9 +19,9 @@ book:
         - FinCatchAnalysis_1_Methods.qmd
         - FinCatchAnalysis_2_CreateAnalysis.qmd
     - part: references.qmd
-  number-depth: 2
-  toc-depth: 2
-  bibliography: references.bib
+  # number-depth: 2
+  # toc-depth: 2
+  # bibliography: references.bib
 
 format:
   html:
