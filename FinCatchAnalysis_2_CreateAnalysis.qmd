@@ -9,3 +9,9 @@ Make sure to test for:
 -   Data selected by both surveys and samples
 
 -   Filters that return NO data
+
+-   works for both grouped by survey and ungrouped analysis
+
+    -   basic methodogy is to set surveyUid to "-1" if dataObject\$groupSurveys == FALSE
+
+    -   may need to be careful when using "group by" as surveyUid will be dropped from data.frame but still be expected in subsequent code
