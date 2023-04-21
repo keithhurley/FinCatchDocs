@@ -1,5 +1,15 @@
 # Create Analysis
 
+Analysis function calls are prefixed with "fca\_" and object names are prefixed with "fc\_"
+
+The fc_object that is returned by the analysis function call:
+
+-   inherits from fc_base
+
+-   results must use standard names and include all columns for use if analysis is exported/downloaded
+
+-   renaming columns and dropping columns from results for display must take place in the "CreateTable" method of the fc_object - NOT in the "Results" of the fc_object
+
 Make sure to test for:
 
 -   Data selected by surveys only
@@ -15,3 +25,5 @@ Make sure to test for:
     -   basic methodogy is to set surveyUid to "-1" if dataObject\$groupSurveys == FALSE
 
     -   may need to be careful when using "group by" as surveyUid will be dropped from data.frame but still be expected in subsequent code
+
+Make sure to add to the list of analysis functions available in the package (found in inst folder)
