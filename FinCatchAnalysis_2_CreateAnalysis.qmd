@@ -27,3 +27,55 @@ Make sure to test for:
     -   may need to be careful when using "group by" as surveyUid will be dropped from data.frame but still be expected in subsequent code
 
 Make sure to add to the list of analysis functions available in the package (found in inst folder)
+
+### Steps:
+
+1.  Create new r file names fc_analysisName.R (Easiest To Copy Existing Analysis and Modify)
+
+2.  Create/Modify the roxygen comments for procedure
+
+3.  Name/Rename function. Analysis functions are prefixed with "fca\_" and the same base name as the "fc\_" file.
+
+4.  All function calls require a FinCatch Data Object (fc_data) to be passed to an arguement named "myData"
+
+5.  Check that fish (or Wq) samples exist in the current dataset.
+
+6.  Set grouping variables. This allows for calculations to be grouped or NOT grouped by surveys in addition to whatever other fields are needed.
+
+7.  This is determined by checking "myData\$groupBySurvey". A typical grouping block looks like:
+
+`#set grouping vars to use or not use surveyUid`
+
+`if (myData$groupSurveys == TRUE) {`
+
+`myGroups <- c("surveyUid", "fishSpeciesCode")`
+
+`} else {`
+
+`myGroups <- c("fishSpeciesCode")`
+
+`}`
+
+-   If NOT grouped by survey, all surveyUid's need to be set to -1 before using the survey labeler functions
+
+-   To group analysis calculations during analysis, use the dplyr verbs
+
+    -   "group_by(across(all_of(myGroups))"
+
+    -   add addition fields as necessary "group_by(across(all_of(myGroups), anotherFieldHere)"
+
+8.  Write analysis code
+
+    -   Always include Standard Error and Sample size (if appropriate), this allow users to calculate difference confidence intervals post hoc
+
+    -    When including confidence intervals, include 95% and 80%
+
+    -   Make sure to account for missing data in any input
+
+9.  Label values like survey, sample, species, waterbody, etc.
+
+    -   Labelers exist for samples and surveys (make sure surveyUid's are set to -1 if not grouping by survey
+
+    -   Helper functions are available for coded values
+
+10.  Attach all results to an analysis object (either base or custom)

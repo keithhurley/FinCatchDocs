@@ -165,7 +165,13 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#steps" id="toc-steps" class="nav-link active" data-scroll-target="#steps"><span class="header-section-number">6.0.1</span> Steps:</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -187,15 +193,63 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>Analysis function calls are prefixed with “fca_” and object names are prefixed with “fc_”</p>
+<p>The fc_object that is returned by the analysis function call:</p>
+<ul>
+<li><p>inherits from fc_base</p></li>
+<li><p>results must use standard names and include all columns for use if analysis is exported/downloaded</p></li>
+<li><p>renaming columns and dropping columns from results for display must take place in the “CreateTable” method of the fc_object - NOT in the “Results” of the fc_object</p></li>
+</ul>
 <p>Make sure to test for:</p>
 <ul>
 <li><p>Data selected by surveys only</p></li>
 <li><p>Data selected by samples only</p></li>
 <li><p>Data selected by both surveys and samples</p></li>
 <li><p>Filters that return NO data</p></li>
+<li><p>works for both grouped by survey and ungrouped analysis</p>
+<ul>
+<li><p>basic methodogy is to set surveyUid to “-1” if dataObject$groupSurveys == FALSE</p></li>
+<li><p>may need to be careful when using “group by” as surveyUid will be dropped from data.frame but still be expected in subsequent code</p></li>
+</ul></li>
 </ul>
+<p>Make sure to add to the list of analysis functions available in the package (found in inst folder)</p>
+<section id="steps" class="level3" data-number="6.0.1">
+<h3 data-number="6.0.1" class="anchored" data-anchor-id="steps"><span class="header-section-number">6.0.1</span> Steps:</h3>
+<ol type="1">
+<li><p>Create new r file names fc_analysisName.R (Easiest To Copy Existing Analysis and Modify)</p></li>
+<li><p>Create/Modify the roxygen comments for procedure</p></li>
+<li><p>Name/Rename function. Analysis functions are prefixed with “fca_” and the same base name as the “fc_” file.</p></li>
+<li><p>All function calls require a FinCatch Data Object (fc_data) to be passed to an arguement named “myData”</p></li>
+<li><p>Check that fish (or Wq) samples exist in the current dataset.</p></li>
+<li><p>Set grouping variables. This allows for calculations to be grouped or NOT grouped by surveys in addition to whatever other fields are needed.</p></li>
+<li><p>This is determined by checking “myData$groupBySurvey”. A typical grouping block looks like:</p></li>
+</ol>
+<p><code>#set grouping vars to use or not use surveyUid</code></p>
+<p><code>if (myData$groupSurveys == TRUE) {</code></p>
+<p><code>myGroups &lt;- c("surveyUid", "fishSpeciesCode")</code></p>
+<p><code>} else {</code></p>
+<p><code>myGroups &lt;- c("fishSpeciesCode")</code></p>
+<p><code>}</code></p>
+<ul>
+<li><p>If NOT grouped by survey, all surveyUid’s need to be set to -1 before using the survey labeler functions</p></li>
+<li><p>To group analysis calculations during analysis, use the dplyr verbs</p>
+<ul>
+<li><p>“group_by(across(all_of(myGroups))”</p></li>
+<li><p>add addition fields as necessary “group_by(across(all_of(myGroups), anotherFieldHere)”</p></li>
+</ul></li>
+</ul>
+<ol start="8" type="1">
+<li><p>Write analysis code</p></li>
+<li><p>Label values like survey, sample, species, waterbody, etc.</p>
+<ul>
+<li><p>Labelers exist for samples and surveys</p></li>
+<li><p>Helper functions are available for coded values</p></li>
+</ul></li>
+<li></li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
