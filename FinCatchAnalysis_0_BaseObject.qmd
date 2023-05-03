@@ -6,21 +6,25 @@ Provides a common interface for results regardless of what analysis is run.
 
 ### Variables
 
+-   analysisTitle - (string) Description of the analysis stored in the object, used for headers and titles in reports and displays
+
+-   exportName - (string) Name used when generating file download names, no spaces or punctuation should be used
+
 -   descriptionText - (string) Markdown text to be displayed in outputs prior to the output tables and figures
 
--   tableTitle- (string) Title text to be used on all object tables
+-   tableTitle- (list\<string\>) Title text to be used on object tables, each item in list corresponds to one table output in printTables
 
--   groupByVars - (string) Comma-separated string of variable name to use as grouping variables within the table
+-   groupByVars - (string) Comma-separated string of variable name to use as grouping variables within the tables
 
 -   surveys - (dataframe) Dataframe containing survey-level data
 
 -   samples - (dataframe) Dataframe containing samples
 
--   results - (list of dataframes) List of dataframes containing results of analysis
+-   results - (list\<dataframes\>) List of dataframes containing results of analysis
 
--   plots - (list of ggplot objects) List of ggPlot objects created from analysis
+-   plots - (list\<ggplot objects\>) List of ggPlot objects created from analysis
 
--   errorMessage - (list of string) Error messages created during analysis
+-   errorMessage - (list\<string\>) Error messages created during analysis
 
 -   groupHeaderBackgroundColor - (string) Color to be used in background of group header within table, groups are determined by the groupByVars variable, used in HTML outputs only
 
@@ -30,22 +34,28 @@ Provides a common interface for results regardless of what analysis is run.
 
 ### Methods
 
--   print - method used by R to print results to console
+-   print - method used by R to print the results variable
 
--   exportJson - method used to create and save Json file of results
+-   exportJson - method used to create and save Json file of results, no default implementation
 
--   exportCsv - method used to create and save Csv file of results
+-   exportCsv - method used to create and save Csv file of results, no default implementation
 
 -   createTable - generic table to create both Latex and Html tables for object
 
--   createTableLatex
+-   createTableLatex - creates table formatted for Latex, default implementation simply calls and returns createTable
 
--   createTableHtml
+-   createTableHtml - creates table formatted for Html, default implementation simply calls and returns createTable
 
--   printTablesLatex
+-   printTablesLatex - called to output all tables in a LaTex format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs
 
--   printTablesHtml
+-   printTablesHtml  - called to output all tables in a Html format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs
 
--   iterateSurvey
+-   printTablesAuto - tests the incoming call for a LaTex environment and calls either printTablesLatex or printTablesHtml as appropiate, used for markdown reports that can be user-generated in mulitple formats
+
+-   iterateSurvey - a generic function that crawls through two loops, one for survey groups, one for specific tables (one analysis may output mulitiple tables) and is called by the printTable functions
+
+-   printPlots - called to output ggplot outputs stored as part of analysis
 
 ## Overriding Base Object
+
+The fc_base object can be extended and customized to produce objects for specific analysis. See details in "Creating Analyis Chapter".

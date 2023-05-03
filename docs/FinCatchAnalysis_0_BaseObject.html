@@ -204,14 +204,16 @@ ul.task-list li input[type="checkbox"] {
 <section id="variables" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="variables"><span class="header-section-number">3.1.1</span> Variables</h3>
 <ul>
+<li><p>analysisTitle - (string) Description of the analysis stored in the object, used for headers and titles in reports and displays</p></li>
+<li><p>exportName - (string) Name used when generating file download names, no spaces or punctuation should be used</p></li>
 <li><p>descriptionText - (string) Markdown text to be displayed in outputs prior to the output tables and figures</p></li>
-<li><p>tableTitle- (string) Title text to be used on all object tables</p></li>
-<li><p>groupByVars - (string) Comma-separated string of variable name to use as grouping variables within the table</p></li>
+<li><p>tableTitle- (list&lt;string&gt;) Title text to be used on object tables, each item in list corresponds to one table output in printTables</p></li>
+<li><p>groupByVars - (string) Comma-separated string of variable name to use as grouping variables within the tables</p></li>
 <li><p>surveys - (dataframe) Dataframe containing survey-level data</p></li>
 <li><p>samples - (dataframe) Dataframe containing samples</p></li>
-<li><p>results - (list of dataframes) List of dataframes containing results of analysis</p></li>
-<li><p>plots - (list of ggplot objects) List of ggPlot objects created from analysis</p></li>
-<li><p>errorMessage - (list of string) Error messages created during analysis</p></li>
+<li><p>results - (list&lt;dataframes&gt;) List of dataframes containing results of analysis</p></li>
+<li><p>plots - (list&lt;ggplot objects&gt;) List of ggPlot objects created from analysis</p></li>
+<li><p>errorMessage - (list&lt;string&gt;) Error messages created during analysis</p></li>
 <li><p>groupHeaderBackgroundColor - (string) Color to be used in background of group header within table, groups are determined by the groupByVars variable, used in HTML outputs only</p></li>
 <li><p>groupSummaryBackgroundColor - (string) Color to be used in the summary row of each group within table, groups are determined by the groupByVars variable, used in HTML outputs only</p></li>
 <li><p>gtTheme - (string) Name of gt tables theme from the gtExtras package, used in HTML outputs only</p></li>
@@ -220,20 +222,23 @@ ul.task-list li input[type="checkbox"] {
 <section id="methods" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="methods"><span class="header-section-number">3.1.2</span> Methods</h3>
 <ul>
-<li><p>print - method used by R to print results to console</p></li>
-<li><p>exportJson - method used to create and save Json file of results</p></li>
-<li><p>exportCsv - method used to create and save Csv file of results</p></li>
+<li><p>print - method used by R to print the results variable</p></li>
+<li><p>exportJson - method used to create and save Json file of results, no default implementation</p></li>
+<li><p>exportCsv - method used to create and save Csv file of results, no default implementation</p></li>
 <li><p>createTable - generic table to create both Latex and Html tables for object</p></li>
-<li><p>createTableLatex</p></li>
-<li><p>createTableHtml</p></li>
-<li><p>printTablesLatex</p></li>
-<li><p>printTablesHtml</p></li>
-<li><p>iterateSurvey</p></li>
+<li><p>createTableLatex - creates table formatted for Latex, default implementation simply calls and returns createTable</p></li>
+<li><p>createTableHtml - creates table formatted for Html, default implementation simply calls and returns createTable</p></li>
+<li><p>printTablesLatex - called to output all tables in a LaTex format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs</p></li>
+<li><p>printTablesHtml - called to output all tables in a Html format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs</p></li>
+<li><p>printTablesAuto - tests the incoming call for a LaTex environment and calls either printTablesLatex or printTablesHtml as appropiate, used for markdown reports that can be user-generated in mulitple formats</p></li>
+<li><p>iterateSurvey - a generic function that crawls through two loops, one for survey groups, one for specific tables (one analysis may output mulitiple tables) and is called by the printTable functions</p></li>
+<li><p>printPlots - called to output ggplot outputs stored as part of analysis</p></li>
 </ul>
 </section>
 </section>
 <section id="overriding-base-object" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="overriding-base-object"><span class="header-section-number">3.2</span> Overriding Base Object</h2>
+<p>The fc_base object can be extended and customized to produce objects for specific analysis. See details in “Creating Analyis Chapter”.</p>
 
 
 </section>

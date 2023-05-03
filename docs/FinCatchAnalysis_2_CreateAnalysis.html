@@ -170,6 +170,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#steps" id="toc-steps" class="nav-link active" data-scroll-target="#steps"><span class="header-section-number">6.0.1</span> Steps:</a></li>
+  <li><a href="#create-custom-analysis-r6-object" id="toc-create-custom-analysis-r6-object" class="nav-link" data-scroll-target="#create-custom-analysis-r6-object"><span class="header-section-number">6.0.2</span> Create Custom Analysis R6 Object</a></li>
   </ul>
 </nav>
     </div>
@@ -194,13 +195,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>Analysis function calls are prefixed with “fca_” and object names are prefixed with “fc_”</p>
-<p>The fc_object that is returned by the analysis function call:</p>
-<ul>
-<li><p>inherits from fc_base</p></li>
-<li><p>results must use standard names and include all columns for use if analysis is exported/downloaded</p></li>
-<li><p>renaming columns and dropping columns from results for display must take place in the “CreateTable” method of the fc_object - NOT in the “Results” of the fc_object</p></li>
-</ul>
-<p>Make sure to test for:</p>
+<p>Make sure to test each analysis function for:</p>
 <ul>
 <li><p>Data selected by surveys only</p></li>
 <li><p>Data selected by samples only</p></li>
@@ -217,6 +212,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="6.0.1" class="anchored" data-anchor-id="steps"><span class="header-section-number">6.0.1</span> Steps:</h3>
 <ol type="1">
 <li><p>Create new r file names fc_analysisName.R (Easiest To Copy Existing Analysis and Modify)</p></li>
+<li><p>No library statements should be included in R file. Instead, they need to be included in the package DESCRIPTION file.</p></li>
 <li><p>Create/Modify the roxygen comments for procedure</p></li>
 <li><p>Name/Rename function. Analysis functions are prefixed with “fca_” and the same base name as the “fc_” file.</p></li>
 <li><p>All function calls require a FinCatch Data Object (fc_data) to be passed to an arguement named “myData”</p></li>
@@ -239,14 +235,75 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 <ol start="8" type="1">
-<li><p>Write analysis code</p></li>
+<li><p>Write analysis code</p>
+<ul>
+<li><p>Always include Standard Error and Sample size (if appropriate), this allow users to calculate difference confidence intervals post hoc</p></li>
+<li><p>When including confidence intervals, include 95% and 80%</p></li>
+<li><p>Make sure to account for missing data in any input</p></li>
+</ul></li>
 <li><p>Label values like survey, sample, species, waterbody, etc.</p>
 <ul>
-<li><p>Labelers exist for samples and surveys</p></li>
+<li><p>Labelers exist for samples and surveys (make sure surveyUid’s are set to -1 if not grouping by survey</p></li>
 <li><p>Helper functions are available for coded values</p></li>
 </ul></li>
-<li></li>
+<li><p>Attach all results to an analysis object (either base or custom)</p></li>
 </ol>
+</section>
+<section id="create-custom-analysis-r6-object" class="level3" data-number="6.0.2">
+<h3 data-number="6.0.2" class="anchored" data-anchor-id="create-custom-analysis-r6-object"><span class="header-section-number">6.0.2</span> Create Custom Analysis R6 Object</h3>
+<p>All analysis results are returned using R6 objects. This allows for consistent use and implementation of different analysis functions by parent applications and code. A base R6 object, “fc_base”, provides all the basic functions and structure for FinCatch analysis objects. Custom objects can be created in the analysis files to allow customized output tables and plots and MUST inherit from the fc_base object.</p>
+<p>Column names will often need to be altered to provided user friendly text in the outputs. In addition, sometimes valuable columns are dropped for display purposes. Both of these should be done in the analysis output object createTable functions, NOT in the analysis function itself or in the “results” property of the output table. This is to provide for consistency between analyses and is important for the download function of FinCatchRA.</p>
+<p>Every effort is made to ensure tables produced by analysis objects work in both HTML (FinCatchRA), which allows more formatting options, and in LaTex , for PDF report generation. Basic table creation should happen by providing a “CreateTable” function. Any additional work needed for specific HTML or LaTex output should be included in overridden “CreateTableHtml” or “CreateTableLatex” functions….which otherwise just call and return the “CreateTable” function by default.</p>
+<p><code>fc_counts &lt;- R6Class("fc_counts",</code></p>
+<p><code>inherit = fc_base,</code></p>
+<p><code>public = list(</code></p>
+<p><code>createTable = function(mySurveyUid, myTableNumber) {</code></p>
+<p><code>#if data was selected by samples only…all surveyUids will be blank</code></p>
+<p><code>op &lt;- NA</code></p>
+<p><code>if (is.na(mySurveyUid) == TRUE) {</code></p>
+<p><code>thisSurveyLabel &lt;-</code></p>
+<p><code>(self$results[[myTableNumber]] %&gt;% filter(is.na(surveyUid)) %&gt;% pull(surveyLabel))[[1]]</code></p>
+<p><code>op &lt;- self$results[[myTableNumber]] %&gt;%</code></p>
+<p><code>filter(is.na(surveyUid))</code></p>
+<p><code>} else {</code></p>
+<p><code>thisSurveyLabel &lt;-</code></p>
+<p><code>(self$results[[myTableNumber]] %&gt;% filter(surveyUid == mySurveyUid) %&gt;% pull(surveyLabel))[[1]]</code></p>
+<p><code>op &lt;-</code></p>
+<p><code>self$results[[myTableNumber]] %&gt;%</code></p>
+<p><code>filter(surveyUid == mySurveyUid)</code></p>
+<p><code>}</code></p>
+<p><code>op &lt;- op %&gt;%</code></p>
+<p><code>group_by(countSpeciesLabel, sampleLabel) %&gt;%</code></p>
+<p><code>summarise(FishCount = sum(FishCount, na.rm = TRUE)) %&gt;%</code></p>
+<p><code>mutate(countGenderLabel = "Total") %&gt;%</code></p>
+<p><code>bind_rows(self$results[[myTableNumber]]  %&gt;%</code></p>
+<p><code>filter(surveyUid == mySurveyUid)) %&gt;%</code></p>
+<p><code>arrange(countSpeciesLabel, sampleLabel, countGenderLabel) %&gt;%</code></p>
+<p><code>select(-countSpeciesCode,-countGenderCode,-sampleUid,-surveyLabel,-surveyUid) %&gt;%</code></p>
+<p><code>spread(countGenderLabel, FishCount, fill = 0) %&gt;%</code></p>
+<p><code>relocate("Total", .after = last_col()) %&gt;%</code></p>
+<p><code># #group_by(across(all_of(c$groupByVars))) %&gt;%</code></p>
+<p><code>gt(rowname_col = colnames(self$results[[1]])[8]) %&gt;%</code></p>
+<p><code>tab_options(</code></p>
+<p><code>row_group.background.color = self$groupHeaderBackgroundColor,</code></p>
+<p><code>summary_row.background.color = self$groupSummaryBackgroundColor,</code></p>
+<p><code>) %&gt;%</code></p>
+<p><code>#self$gt_table_options %&gt;%</code></p>
+<p><code>tab_header(title = md(self$tableTitle),</code></p>
+<p><code>subtitle = thisSurveyLabel) %&gt;%</code></p>
+<p><code>summary_rows(</code></p>
+<p><code>groups = TRUE,</code></p>
+<p><code>columns = everything(),</code></p>
+<p><code>#length(self$results[[1]])-3),#c(3, 4, 5, 6),#, 7),</code></p>
+<p><code>fns = list("Total" = "sum"),</code></p>
+<p><code>formatter = fmt_integer,</code></p>
+<p><code>use_seps = TRUE,</code></p>
+<p><code>missing_text = ""</code></p>
+<p><code>) %&gt;%</code></p>
+<p><code>self$gtTheme()</code></p>
+<p><code>return(op)</code></p>
+<p><code>}</code></p>
+<p><code>))</code></p>
 
 
 </section>
