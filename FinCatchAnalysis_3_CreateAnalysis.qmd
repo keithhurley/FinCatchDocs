@@ -1,0 +1,126 @@
+# Create Analysis
+
+### General
+
+Analysis function calls are prefixed with "fca\_" and object names are prefixed with "fc\_"
+
+Make sure to test each analysis function for:
+
+-   Data selected by surveys only
+
+-   Data selected by samples only
+
+-   Data selected by both surveys and samples
+
+-   Filters that return NO data
+
+-   Works for both grouped by survey and ungrouped analysis, if not grouped by survey in fc_data\$groupSurveys, surveyUid is set to "-1" during data download by the data object
+
+### Steps
+
+1.  Create new r file names fc_analysisName.R (Easiest To Copy Existing Analysis and Modify)
+
+2.  No library statements should be included in R file. Instead, they need to be included in the package DESCRIPTION file.
+
+3.  Create/Modify the roxygen comments for procedure
+
+4.  Name/Rename function. Analysis functions are prefixed with "fca\_" and the same base name as the "fc\_" file.
+
+5.  All function calls require a FinCatch Data Object (fc_data) to be passed to an arguement named "myData"
+
+6.  Check that fish (or Wq) samples exist in the current dataset.
+
+7.  Set grouping variables.
+
+  -   To group analysis calculations during analysis, use the dplyr verbs
+
+``` r
+        group_by(across(all_of(myGroups))
+```
+
+  -   add addition fields as necessary "group_by(across(all_of(myGroups), anotherFieldHere)"
+
+8.  Write analysis code
+
+  -   Always include Standard Error and Sample size (if appropriate), this allow users to calculate difference confidence intervals post hoc
+
+  -   When including confidence intervals, include 95% and 80%
+
+  -   Make sure to account for missing data in any input
+
+9.  Label values like survey, sample, species, waterbody, etc.
+
+  -   Labelers exist for samples and surveys (make sure surveyUid's are set to -1 if not grouping by survey
+
+  -   Helper functions are available for coded values
+
+10.  Attach all results to an analysis object (either base or custom). Example:
+
+``` r
+    #create return object
+    op <- fc_meanWeight$new()
+    op$analysisTitle = "Mean Weight (Weighted)"
+    op$exportName = "MeanWeight"
+    op$results <- list(data.frame(d))
+    op$descriptionText = "These results display weighted mean 
+                          weight.  Calculations are weighted as 
+                          only a non-proportional (i.e. first 10 fish 
+                          per 10mm length group) number of fish 
+                          are subsampled."
+    op$tableTitle <- list("Weighted Mean Weight")
+    op$groupByVars <- "speciesCode"
+    op$groupSurveys <- myData$groupSurveys
+    op$plots <- myPlots
+```
+
+11. Add the function to the list of analysis functions available in the package (found in inst folder).  This list is used to populate the FinCatchRA UI and to feed the fc_getAvailableAnalysis function.
+
+### Create Custom Analysis R6 Object
+
+All analysis results are returned using R6 objects. This allows for consistent use and implementation of different analysis functions by parent applications and code. A base R6 object, "fc_base", provides all the basic functions and structure for FinCatch analysis objects. Custom objects can be created in the analysis files to allow customized output tables and plots and MUST inherit from the fc_base object.
+
+Column names will often need to be altered to provided user friendly text in the outputs. In addition, sometimes valuable columns are dropped for display purposes. Both of these should be done in the analysis output object createTable functions, NOT in the analysis function itself or in the "results" property of the output object. This is to provide for consistency between analyses and is important for the download function of FinCatchRA.
+
+Every effort is made to ensure tables produced by analysis objects work in both HTML (which allows more formatting options and used by FinCatchRA) and in LaTex (for PDF report generation). Basic table creation should happen by providing a "CreateTable" function. Any additional work needed for specific HTML or LaTex output should be included in overridden "CreateTableHtml" or "CreateTableLatex" functions....which otherwise just call and return the "CreateTable" function by default.
+
+``` r
+fc_counts <- R6Class("fc_counts",
+                    inherit = fc_base,
+                    public = list(
+                      createTable = function(mySurveyUid, myTableNumber) {
+                          #if data was selected by samples only…all surveyUids will be blank
+                      op <- NA
+
+                      thisSurveyLabel <- (self$results[[myTableNumber]] %>%                                 filter(surveyUid == mySurveyUid) %>%
+                        pull(surveyLabel))[[1]]
+                        
+                      op <- self$results[[myTableNumber]] %>%
+                        filter(surveyUid == mySurveyUid) %>%
+                        group_by(countSpeciesLabel, sampleLabel) %>%
+                        summarise(FishCount = sum(FishCount, na.rm = TRUE)) %>%
+                        mutate(countGenderLabel = "Total") %>%
+                        bind_rows(self$results[[myTableNumber]]  %>%
+                        filter(surveyUid == mySurveyUid)) %>%
+                        arrange(countSpeciesLabel, sampleLabel, countGenderLabel) %>%
+                        select(-countSpeciesCode,-countGenderCode,-sampleUid,-surveyLabel,-surveyUid) %>% 
+                        spread(countGenderLabel, FishCount, fill = 0) %>%
+                        relocate("Total", .after = last_col()) %>%
+                        gt(rowname_col = colnames(self$results[[1]])[8]) %>%
+                          tab_options(
+                            row_group.background.color = self$groupHeaderBackgroundColor,
+                            summary_row.background.color = self$groupSummaryBackgroundColor
+                            ) %>% 
+                          tab_header(title = md(self$tableTitle),
+                                    subtitle = thisSurveyLabel) %>%
+                          summary_rows(groups = TRUE,
+                                      columns = everything(),
+                                      fns = list("Total" = "sum"),
+                                      formatter = fmt_integer,
+                                      use_seps = TRUE,
+                                      missing_text = "") %>%
+                          self$gtTheme()
+                          
+                        return(op)
+                      }
+                    ))
+```

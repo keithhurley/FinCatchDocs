@@ -1,17 +1,21 @@
 # Example Script
 
-| library(DataAccessPackage) 
-| library(AnalysisPackage)
-| 
-| #create data access object 
-| dAccess\<-myAccess\$new
-| 
-| #create data store 
-| dStore\<-myData\$new(dAccess)
-| 
-| #run counts analysis 
-| countResults\<-fca_Counts(dStore)
-| 
-| #display analysis
-| countResults\$results
-| countResults\$printTablesHtml
+``` r
+library(FinCatchAccess)
+library(FinCatchAnalysis)
+
+#use filters gadget to make a filter object
+myFilters<-fcacc_show_FilterSelector_gadget()
+
+#feed the filter object with your ID values into a data object
+myDataObject<-fc_data$new(myFilterObject=myFilters, myGroupSurveys=TRUE)
+
+#run an analysis by feeding it the data object
+myAnalysis<-fca_meanLength(myDataObject)
+
+#print output tables with printTablesAuto/Html/Latex
+myAnalysis$printTablesAuto()
+
+#if you want canned plots
+myAnalysis$plots
+```

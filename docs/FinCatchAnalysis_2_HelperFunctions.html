@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FinCatch Documentation - 4&nbsp; Methods</title>
+<title>FinCatch Documentation - 5&nbsp; Helpers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./FinCatchAnalysis_2_HelperFunctions.html" rel="next">
-<link href="./FinCatchAnalysis_1_Objects.html" rel="prev">
+<link href="./FinCatchAnalysis_3_CreateAnalysis.html" rel="next">
+<link href="./FinCatchAnalysis_1_Methods.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0.html">Analysis R Package</a></li><li class="breadcrumb-item"><a href="./FinCatchAnalysis_1_Methods.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Methods</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0.html">Analysis R Package</a></li><li class="breadcrumb-item"><a href="./FinCatchAnalysis_2_HelperFunctions.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Helpers</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -141,13 +175,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FinCatchAnalysis_1_Methods.html" class="sidebar-item-text sidebar-link active">
+  <a href="./FinCatchAnalysis_1_Methods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FinCatchAnalysis_2_HelperFunctions.html" class="sidebar-item-text sidebar-link">
+  <a href="./FinCatchAnalysis_2_HelperFunctions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Helpers</span></span></a>
   </div>
 </li>
@@ -177,8 +211,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#fca_counts" id="toc-fca_counts" class="nav-link active" data-scroll-target="#fca_counts"><span class="header-section-number">4.1</span> fca_counts</a></li>
-  <li><a href="#fca_fishsamplemetadata" id="toc-fca_fishsamplemetadata" class="nav-link" data-scroll-target="#fca_fishsamplemetadata"><span class="header-section-number">4.2</span> fca_fishSampleMetadata</a></li>
+  <li><a href="#dplyr-verbs" id="toc-dplyr-verbs" class="nav-link active" data-scroll-target="#dplyr-verbs"><span class="header-section-number">5.1</span> Dplyr Verbs</a>
+  <ul class="collapse">
+  <li><a href="#addstockcategory" id="toc-addstockcategory" class="nav-link" data-scroll-target="#addstockcategory"><span class="header-section-number">5.1.1</span> AddStockCategory</a></li>
+  <li><a href="#addwrparameters" id="toc-addwrparameters" class="nav-link" data-scroll-target="#addwrparameters"><span class="header-section-number">5.1.2</span> AddWrParameters</a></li>
+  <li><a href="#addageintercept" id="toc-addageintercept" class="nav-link" data-scroll-target="#addageintercept"><span class="header-section-number">5.1.3</span> AddAgeIntercept</a></li>
+  </ul></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">5.2</span> Functions</a>
+  <ul class="collapse">
+  <li><a href="#weighted.se.mean" id="toc-weighted.se.mean" class="nav-link" data-scroll-target="#weighted.se.mean"><span class="header-section-number">5.2.1</span> weighted.se.mean</a></li>
+  <li><a href="#fca_getanalysisfunctions" id="toc-fca_getanalysisfunctions" class="nav-link" data-scroll-target="#fca_getanalysisfunctions"><span class="header-section-number">5.2.2</span> fca_getAnalysisFunctions</a></li>
+  </ul></li>
+  <li><a href="#labelers" id="toc-labelers" class="nav-link" data-scroll-target="#labelers"><span class="header-section-number">5.3</span> Labelers</a>
+  <ul class="collapse">
+  <li><a href="#fc_labeler_survey" id="toc-fc_labeler_survey" class="nav-link" data-scroll-target="#fc_labeler_survey"><span class="header-section-number">5.3.1</span> fc_labeler_Survey</a></li>
+  <li><a href="#fc_labeler_fishsample" id="toc-fc_labeler_fishsample" class="nav-link" data-scroll-target="#fc_labeler_fishsample"><span class="header-section-number">5.3.2</span> fc_labeler_fishSample</a></li>
+  <li><a href="#fc_labeler_wqsample" id="toc-fc_labeler_wqsample" class="nav-link" data-scroll-target="#fc_labeler_wqsample"><span class="header-section-number">5.3.3</span> fc_labeler_wqSample</a></li>
+  <li><a href="#fc_matchcodes" id="toc-fc_matchcodes" class="nav-link" data-scroll-target="#fc_matchcodes"><span class="header-section-number">5.3.4</span> fc_matchCodes</a></li>
+  <li><a href="#fc_createcodelabel" id="toc-fc_createcodelabel" class="nav-link" data-scroll-target="#fc_createcodelabel"><span class="header-section-number">5.3.5</span> fc_createCodeLabel</a></li>
+  <li><a href="#fc_createcodelabelreversed" id="toc-fc_createcodelabelreversed" class="nav-link" data-scroll-target="#fc_createcodelabelreversed"><span class="header-section-number">5.3.6</span> fc_createCodeLabelReversed</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -187,7 +239,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Methods</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Helpers</span></h1>
 </div>
 
 
@@ -202,21 +254,90 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="fca_counts" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="fca_counts"><span class="header-section-number">4.1</span> fca_counts</h2>
-<ul>
-<li>summarizes number of fish caught in samples by species and gender</li>
-<li>returns fc_counts object</li>
-</ul>
+<p>There are a number of helper functions available in the FinCatch Analysis package.</p>
+<section id="dplyr-verbs" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="dplyr-verbs"><span class="header-section-number">5.1</span> Dplyr Verbs</h2>
+<section id="addstockcategory" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="addstockcategory"><span class="header-section-number">5.1.1</span> AddStockCategory</h3>
+<p>This function works as a dplyr verb and adds a column containing a factor of stock-length categories from Gabelhouse’s 5-cell model. The function takes the name of the column containing the species code, the column containing the fish length (in mm), and a reference to the data object for the analysis (needed to retrieve species code and stock length values). The function defaults to full group names as factor labels; use abbrieviations=TRUE to use category abbrieviations instead.</p>
+<p>Example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>some_data <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AddStockCategory</span>(sppCode, fishLen, someDataObject, <span class="at">useAbbreviations =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="fca_fishsamplemetadata" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="fca_fishsamplemetadata"><span class="header-section-number">4.2</span> fca_fishSampleMetadata</h2>
-<ul>
-<li>returns metadata for fish samples included in analysis</li>
-<li>returns fc_fishSampleMetadata object</li>
-</ul>
+<section id="addwrparameters" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="addwrparameters"><span class="header-section-number">5.1.2</span> AddWrParameters</h3>
+<p>This dplyr verb has yet to be implented</p>
+</section>
+<section id="addageintercept" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="addageintercept"><span class="header-section-number">5.1.3</span> AddAgeIntercept</h3>
+<p>This dplyr verb has yet to be implemented</p>
+</section>
+</section>
+<section id="functions" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="functions"><span class="header-section-number">5.2</span> Functions</h2>
+<section id="weighted.se.mean" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="weighted.se.mean"><span class="header-section-number">5.2.1</span> weighted.se.mean</h3>
+<p>This function calculates standard error around a weighted mean. The function assumes a weighted mean calculated by the “weighted.mean()” function in the stats package of R and accepts the same arguements.</p>
+<p>Example:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>some_data<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">xValue=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">xWeights=</span><span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>some_data <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">myWeightedMean=</span><span class="fu">weighted.mean</span>(xValue, xWeights, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">myWeightedMeanSE=</span><span class="fu">weighted.se.mean</span>(xValue, xWeights, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fca_getanalysisfunctions" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="fca_getanalysisfunctions"><span class="header-section-number">5.2.2</span> fca_getAnalysisFunctions</h3>
+<p>This function returns a list and description of the analysis functions available in the FinCatchAnalysis package.</p>
+<p>Example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fca_getAnalysisFunctions</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="labelers" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="labelers"><span class="header-section-number">5.3</span> Labelers</h2>
+<section id="fc_labeler_survey" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="fc_labeler_survey"><span class="header-section-number">5.3.1</span> fc_labeler_Survey</h3>
+<p>This function creates a label for each survey to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a reference to the analysis data object. The label returned is structured like:</p>
+<blockquote class="blockquote">
+<p>Title1 (WB=5110 | Method=21 | Year=2022 | Season=Spring)</p>
+</blockquote>
+<p>Example:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>some_data <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">surveyLabel=</span><span class="fu">fc_labeler_Survey</span>(surveyUid, aDataObject))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fc_labeler_fishsample" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="fc_labeler_fishsample"><span class="header-section-number">5.3.2</span> fc_labeler_fishSample</h3>
+<p>This function creates a label for each fish sample to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a dataframe of fish samples in the analysis taken from the data object. The label returned is structured like:</p>
+<blockquote class="blockquote">
+<p>WB=2832 | Method=45 | 2022-03-11 | Station=627</p>
+</blockquote>
+<p>Example:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>some_data <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sampleLabel=</span><span class="fu">fc_labeler_fishSample</span>(surveyUid, aDataObject<span class="sc">$</span>get_data_samplesFish))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fc_labeler_wqsample" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="fc_labeler_wqsample"><span class="header-section-number">5.3.3</span> fc_labeler_wqSample</h3>
+<p>This function creates a label for each fish sample to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a dataframe of fish samples in the analysis taken from the data object. The label returned is structured like:</p>
+<blockquote class="blockquote">
+<p>WB=2832 | 2022-03-11 | Station=627</p>
+</blockquote>
+<p>Example:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>some_data <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sampleLabel=</span><span class="fu">fc_labeler_wqSample</span>(surveyUid, aDataObject<span class="sc">$</span>get_data_samplesWq))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fc_matchcodes" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="fc_matchcodes"><span class="header-section-number">5.3.4</span> fc_matchCodes</h3>
+<p>www</p>
+</section>
+<section id="fc_createcodelabel" class="level3" data-number="5.3.5">
+<h3 data-number="5.3.5" class="anchored" data-anchor-id="fc_createcodelabel"><span class="header-section-number">5.3.5</span> fc_createCodeLabel</h3>
+<p>www</p>
+</section>
+<section id="fc_createcodelabelreversed" class="level3" data-number="5.3.6">
+<h3 data-number="5.3.6" class="anchored" data-anchor-id="fc_createcodelabelreversed"><span class="header-section-number">5.3.6</span> fc_createCodeLabelReversed</h3>
+<p>www</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -455,13 +576,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./FinCatchAnalysis_1_Objects.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objects</span></span>
+      <a href="./FinCatchAnalysis_1_Methods.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Methods</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./FinCatchAnalysis_2_HelperFunctions.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Helpers</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./FinCatchAnalysis_3_CreateAnalysis.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Create Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,0 +1,104 @@
+# Helpers
+
+There are a number of helper functions available in the FinCatch Analysis package.
+
+## Dplyr Verbs
+
+### AddStockCategory
+
+This function works as a dplyr verb and adds a column containing a factor of stock-length categories from Gabelhouse's 5-cell model. The function takes the name of the column containing the species code, the column containing the fish length (in mm), and a reference to the data object for the analysis (needed to retrieve species code and stock length values). The function defaults to full group names as factor labels; use abbrieviations=TRUE to use category abbrieviations instead.
+
+Example:
+
+``` r
+some_data %>%
+  AddStockCategory(sppCode, fishLen, someDataObject, useAbbreviations = TRUE) 
+```
+
+### AddWrParameters
+
+This dplyr verb has yet to be implented
+
+### AddAgeIntercept
+
+This dplyr verb has yet to be implemented
+
+## Functions
+
+### weighted.se.mean
+
+This function calculates standard error around a weighted mean. The function assumes a weighted mean calculated by the "weighted.mean()" function in the stats package of R and accepts the same arguements.
+
+Example:
+
+``` r
+some_data=data.frame(xValue=c(3,4,6,3,2,3),
+                     xWeights=c(0.2, 0.2, 0.3, 0.1, 0.1, 0.1))
+some_data %>%
+  mutate(myWeightedMean=weighted.mean(xValue, xWeights, na.rm=TRUE),
+         myWeightedMeanSE=weighted.se.mean(xValue, xWeights, na.rm=TRUE))
+```
+
+### fca_getAnalysisFunctions
+
+This function returns a list and description of the analysis functions available in the FinCatchAnalysis package. 
+
+Example:
+
+``` r
+fca_getAnalysisFunctions()
+```
+
+## Labelers
+
+### fc_labeler_Survey
+
+This function creates a label for each survey to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a reference to the analysis data object. The label returned is structured like:
+
+>Title1 (WB=5110 | Method=21 |  Year=2022 | Season=Spring)
+
+Example:
+
+``` r
+some_data %>%
+  mutate(surveyLabel=fc_labeler_Survey(surveyUid, aDataObject))
+```
+
+### fc_labeler_fishSample
+
+This function creates a label for each fish sample to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a dataframe of fish samples in the analysis taken from the data object. The label returned is structured like:
+
+>WB=2832 | Method=45 | 2022-03-11 | Station=627
+
+Example:
+
+``` r
+some_data %>%
+  mutate(sampleLabel=fc_labeler_fishSample(surveyUid, aDataObject$get_data_samplesFish))
+```
+
+### fc_labeler_wqSample
+
+
+This function creates a label for each fish sample to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a dataframe of fish samples in the analysis taken from the data object. The label returned is structured like:
+
+>WB=2832 | 2022-03-11 | Station=627
+
+Example:
+
+``` r
+some_data %>%
+  mutate(sampleLabel=fc_labeler_wqSample(surveyUid, aDataObject$get_data_samplesWq))
+```
+
+### fc_matchCodes
+
+www
+
+### fc_createCodeLabel
+
+www
+
+### fc_createCodeLabelReversed
+
+www

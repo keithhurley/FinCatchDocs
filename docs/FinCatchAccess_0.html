@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FinCatch Documentation - 4&nbsp; Methods</title>
+<title>FinCatch Documentation - Data Access R Package</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./FinCatchAnalysis_2_HelperFunctions.html" rel="next">
-<link href="./FinCatchAnalysis_1_Objects.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./FinCatchAnalysis_3_CreateAnalysis.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0.html">Analysis R Package</a></li><li class="breadcrumb-item"><a href="./FinCatchAnalysis_1_Methods.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Methods</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./FinCatchAccess_0.html">Data Access R Package</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -141,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FinCatchAnalysis_1_Methods.html" class="sidebar-item-text sidebar-link active">
+  <a href="./FinCatchAnalysis_1_Methods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Methods</span></span></a>
   </div>
 </li>
@@ -177,8 +177,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#fca_counts" id="toc-fca_counts" class="nav-link active" data-scroll-target="#fca_counts"><span class="header-section-number">4.1</span> fca_counts</a></li>
-  <li><a href="#fca_fishsamplemetadata" id="toc-fca_fishsamplemetadata" class="nav-link" data-scroll-target="#fca_fishsamplemetadata"><span class="header-section-number">4.2</span> fca_fishSampleMetadata</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">WorkFlow</a></li>
+  <li><a href="#principles" id="toc-principles" class="nav-link" data-scroll-target="#principles">Principles</a></li>
   </ul>
 </nav>
     </div>
@@ -187,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Methods</span></h1>
+<h1 class="title">Data Access R Package</h1>
 </div>
 
 
@@ -202,18 +203,27 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="fca_counts" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="fca_counts"><span class="header-section-number">4.1</span> fca_counts</h2>
-<ul>
-<li>summarizes number of fish caught in samples by species and gender</li>
-<li>returns fc_counts object</li>
-</ul>
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p><img src="ArchVis/Slide1.PNG" class="img-fluid"></p>
 </section>
-<section id="fca_fishsamplemetadata" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="fca_fishsamplemetadata"><span class="header-section-number">4.2</span> fca_fishSampleMetadata</h2>
+<section id="workflow" class="level2">
+<h2 class="anchored" data-anchor-id="workflow">WorkFlow</h2>
+<p><img src="ArchVis/Slide2.PNG" class="img-fluid"></p>
+</section>
+<section id="principles" class="level2">
+<h2 class="anchored" data-anchor-id="principles">Principles</h2>
+<p>By Using myData Object:</p>
 <ul>
-<li>returns metadata for fish samples included in analysis</li>
-<li>returns fc_fishSampleMetadata object</li>
+<li><p>Only data that’s needed is loaded</p></li>
+<li><p>Data is cached</p></li>
+<li><p>Data is only retrieved once for entire analysis string</p></li>
+</ul>
+<p>By Using Separate Data Access Package:</p>
+<ul>
+<li><p>Isolates and generalizes data access</p></li>
+<li><p>Allows analysis code to use different sources of data</p></li>
+<li><p>Allows different scripts to use different authentications for data access</p></li>
 </ul>
 
 
@@ -455,13 +465,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./FinCatchAnalysis_1_Objects.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objects</span></span>
+      <a href="./FinCatchAnalysis_3_CreateAnalysis.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Create Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./FinCatchAnalysis_2_HelperFunctions.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Helpers</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
