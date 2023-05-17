@@ -2,4 +2,6 @@
 
 # 
 
-This is documentation for the FinCatch Data System of the Nebraska Game and Parks Fishery Division. FinCatch stores and provides analysis of standard fisheries population surveys. This set of documentation is an accumulation of both developmental and instructional documentation.
+This is documentation for the FinCatch Data System of the Nebraska Game and Parks Fishery Division. FinCatch stores and provides analysis of standard lentic fisheries population surveys. This set of documentation is an accumulation of both developmental and instructional documentation.
+
+![](images/FinCatchIcon.png){fig-align="center" width="50%"}

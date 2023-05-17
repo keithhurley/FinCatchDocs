@@ -1,0 +1,11 @@
+# Sampling Restrictions
+
+-   All length subsampling should occur at the SAMPLE level.
+
+-   All weight and age subsampling may occur at the SAMPLE or SURVEY level.
+
+-   Every individual of a species in the processed species list has either been measured or counted. If "All Species" (code 0) is in the processed species list, EVERY individual encountered during sampling was either measured or counted.
+
+-   Odd species (those not found in the processed species list) may be measured or counted and entered into FinCatch. However, they will only be reported in raw data summaries and NOT included in calculations and analysis as they cannot be assumed to have been collected in their entirety (i.e. all individuals in all samples).
+
+-   If the "Use For CPUE" flag is FALSE (unchecked), then NONE of the data for any species in the sample will be used for catch rate calculations. If the flag is TRUE, then ALL species in the sample will be included for catch rate calculations.

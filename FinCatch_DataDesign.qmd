@@ -1,0 +1,13 @@
+# Data Design
+
+## Processed Species
+
+A list of species processed during sampling is collected at the survey level and applies to all fish samples attached to the survey. Any species included in the processed species list and NOT found in the data carries the assumption of a zero-catch. If a species is found in the data and NOT in the process species list, no assumption is made that the species was consistently processed throughout the survey.
+
+All species (code 0) can be included in the processed species list. The inclusion of this code carries the assumption that ALL fish collected during the survey (in ALL samples) were processed. During analysis, the processed species list will be expanded to include all species found in the data.
+
+::: callout-note
+Important caveat: expanded to include all species in the analysis and not just in the survey. This allows the following example to work: all Omaha area surveys were analyzed for red ear population structure - but redear were only found in half the reservoirs. By expanding the processed species list by analysis data rather than grouped within survey, zero's will be included for redear in all surveys in the analysis that have all species (code 0) in the processing list.
+:::
+
+## Extrapolation of Length Subsampling

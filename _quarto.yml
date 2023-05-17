@@ -9,10 +9,15 @@ book:
   date: "`r format(Sys.time(), '%B %d, %Y')`" 
   chapters: 
     - index.qmd
-    - part: intro.qmd
-    - part: FinCatch_Architecture.qmd
-    - part: FinCatchAnalysis_0.qmd
+    - part: FinCatch System
+      chapters: 
+        - intro.qmd
+        - FinCatch_SamplingRestrictions.qmd
+        - FinCatch_DataDesign.qmd
+        - FinCatch_Architecture.qmd
+    - part: Analysis R Package
       chapters:
+        - FinCatchAnalysis_0.qmd
         - FinCatchAnalysis_0_ExampleScript.qmd
         - FinCatchAnalysis_0_BaseObject.qmd
         - FinCatchAnalysis_1_Objects.qmd

@@ -14,6 +14,10 @@ Make sure to test each analysis function for:
 
 -   Filters that return NO data
 
+-   Species in processing list and not in data
+
+-   Species not in processing list and in data
+
 -   Works for both grouped by survey and ungrouped analysis, if not grouped by survey in fc_data\$groupSurveys, surveyUid is set to "-1" during data download by the data object
 
 ### Steps
@@ -54,14 +58,16 @@ Make sure to test each analysis function for:
 
   -   Helper functions are available for coded values
 
-10.  Attach all results to an analysis object (either base or custom). Example:
+10.  If analysis is calculated (as opposed to raw data summations), screen out species NOT in the processing list.  This is necessisary because species NOT in the list do not carry the assumption that all specimans for that species were processed.
+
+11.  Attach all results to an analysis object (either base or custom). Example:
 
 ``` r
-    #create return object
+    #create return object at beginning of function 
+    (this allows errors and warnings to be added throughout survey)
     op <- fc_meanWeight$new()
     op$analysisTitle = "Mean Weight (Weighted)"
     op$exportName = "MeanWeight"
-    op$results <- list(data.frame(d))
     op$descriptionText = "These results display weighted mean 
                           weight.  Calculations are weighted as 
                           only a non-proportional (i.e. first 10 fish 
@@ -70,10 +76,18 @@ Make sure to test each analysis function for:
     op$tableTitle <- list("Weighted Mean Weight")
     op$groupByVars <- "speciesCode"
     op$groupSurveys <- myData$groupSurveys
+    
+    #during function, add warnings and errors to return object
+    op$errors <- rlist::list.append(op$errors, "Error1 Message", "Error2 Message")
+    op$warnings <- rlist::list.append(op$warnings, "Warning1")
+    
+    #at end of function, add results to return object
+    op$results <- list(data.frame(d))
     op$plots <- myPlots
+    
 ```
 
-11. Add the function to the list of analysis functions available in the package (found in inst folder).  This list is used to populate the FinCatchRA UI and to feed the fc_getAvailableAnalysis function.
+12. Add the function to the list of analysis functions available in the package (found in inst folder).  This list is used to populate the FinCatchRA UI and to feed the fc_getAvailableAnalysis function.
 
 ### Create Custom Analysis R6 Object
 

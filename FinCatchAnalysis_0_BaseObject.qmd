@@ -24,7 +24,9 @@ Provides a common interface for results regardless of what analysis is run.
 
 -   plots - (list\<ggplot objects\>) List of ggPlot objects created from analysis
 
--   errorMessage - (list\<string\>) Error messages created during analysis
+-   errors - (list\<string\>) Error messages created during analysis
+
+-   warnings- (list\<string\>) Warning messages created during analysis
 
 -   groupHeaderBackgroundColor - (string) Color to be used in background of group header within table, groups are determined by the groupByVars variable, used in HTML outputs only
 
@@ -48,7 +50,7 @@ Provides a common interface for results regardless of what analysis is run.
 
 -   printTablesLatex - called to output all tables in a LaTex format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs
 
--   printTablesHtml  - called to output all tables in a Html format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs
+-   printTablesHtml - called to output all tables in a Html format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs
 
 -   printTablesAuto - tests the incoming call for a LaTex environment and calls either printTablesLatex or printTablesHtml as appropiate, used for markdown reports that can be user-generated in mulitple formats
 
