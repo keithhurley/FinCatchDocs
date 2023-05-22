@@ -128,23 +128,23 @@
   {
     "objectID": "FinCatchAnalysis_0_ExampleScript.html",
     "href": "FinCatchAnalysis_0_ExampleScript.html",
-    "title": "6  Example Script",
+    "title": "8  Example Script",
     "section": "",
     "text": "library(FinCatchAccess)\nlibrary(FinCatchAnalysis)\n\n#use filters gadget to make a filter object\nmyFilters&lt;-fcacc_show_FilterSelector_gadget()\n\n#feed the filter object with your ID values into a data object\nmyDataObject&lt;-fc_data$new(myFilterObject=myFilters, myGroupSurveys=TRUE)\n\n#run an analysis by feeding it the data object\nmyAnalysis&lt;-fca_meanLength(myDataObject)\n\n#print output tables with printTablesAuto/Html/Latex\nmyAnalysis$printTablesAuto()\n\n#if you want canned plots\nmyAnalysis$plots"
   },
   {
     "objectID": "FinCatchAnalysis_0_BaseObject.html#purpose",
     "href": "FinCatchAnalysis_0_BaseObject.html#purpose",
-    "title": "7  Base Object",
-    "section": "7.1 Purpose",
-    "text": "7.1 Purpose\nProvides a common interface for results regardless of what analysis is run.\n\n7.1.1 Variables\n\nanalysisTitle - (string) Description of the analysis stored in the object, used for headers and titles in reports and displays\nexportName - (string) Name used when generating file download names, no spaces or punctuation should be used\ndescriptionText - (string) Markdown text to be displayed in outputs prior to the output tables and figures\ntableTitle- (list&lt;string&gt;) Title text to be used on object tables, each item in list corresponds to one table output in printTables\ngroupByVars - (string) Comma-separated string of variable name to use as grouping variables within the tables\nsurveys - (dataframe) Dataframe containing survey-level data\nsamples - (dataframe) Dataframe containing samples\nresults - (list&lt;dataframes&gt;) List of dataframes containing results of analysis\nplots - (list&lt;ggplot objects&gt;) List of ggPlot objects created from analysis\nerrors - (list&lt;string&gt;) Error messages created during analysis\nwarnings- (list&lt;string&gt;) Warning messages created during analysis\ngroupHeaderBackgroundColor - (string) Color to be used in background of group header within table, groups are determined by the groupByVars variable, used in HTML outputs only\ngroupSummaryBackgroundColor - (string) Color to be used in the summary row of each group within table, groups are determined by the groupByVars variable, used in HTML outputs only\ngtTheme - (string) Name of gt tables theme from the gtExtras package, used in HTML outputs only\n\n\n\n7.1.2 Methods\n\nprint - method used by R to print the results variable\nexportJson - method used to create and save Json file of results, no default implementation\nexportCsv - method used to create and save Csv file of results, no default implementation\ncreateTable - generic table to create both Latex and Html tables for object\ncreateTableLatex - creates table formatted for Latex, default implementation simply calls and returns createTable\ncreateTableHtml - creates table formatted for Html, default implementation simply calls and returns createTable\nprintTablesLatex - called to output all tables in a LaTex format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs\nprintTablesHtml - called to output all tables in a Html format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs\nprintTablesAuto - tests the incoming call for a LaTex environment and calls either printTablesLatex or printTablesHtml as appropiate, used for markdown reports that can be user-generated in mulitple formats\niterateSurvey - a generic function that crawls through two loops, one for survey groups, one for specific tables (one analysis may output mulitiple tables) and is called by the printTable functions\nprintPlots - called to output ggplot outputs stored as part of analysis"
+    "title": "9  Base Object",
+    "section": "9.1 Purpose",
+    "text": "9.1 Purpose\nProvides a common interface for results regardless of what analysis is run.\n\n9.1.1 Variables\n\nanalysisTitle - (string) Description of the analysis stored in the object, used for headers and titles in reports and displays\nexportName - (string) Name used when generating file download names, no spaces or punctuation should be used\ndescriptionText - (string) Markdown text to be displayed in outputs prior to the output tables and figures\ntableTitle- (list&lt;string&gt;) Title text to be used on object tables, each item in list corresponds to one table output in printTables\ngroupByVars - (string) Comma-separated string of variable name to use as grouping variables within the tables\nsurveys - (dataframe) Dataframe containing survey-level data\nsamples - (dataframe) Dataframe containing samples\nresults - (list&lt;dataframes&gt;) List of dataframes containing results of analysis\nplots - (list&lt;ggplot objects&gt;) List of ggPlot objects created from analysis\nerrors - (list&lt;string&gt;) Error messages created during analysis\nwarnings- (list&lt;string&gt;) Warning messages created during analysis\ngroupHeaderBackgroundColor - (string) Color to be used in background of group header within table, groups are determined by the groupByVars variable, used in HTML outputs only\ngroupSummaryBackgroundColor - (string) Color to be used in the summary row of each group within table, groups are determined by the groupByVars variable, used in HTML outputs only\ngtTheme - (string) Name of gt tables theme from the gtExtras package, used in HTML outputs only\n\n\n\n9.1.2 Methods\n\nprint - method used by R to print the results variable\nexportJson - method used to create and save Json file of results, no default implementation\nexportCsv - method used to create and save Csv file of results, no default implementation\ncreateTable - generic table to create both Latex and Html tables for object\ncreateTableLatex - creates table formatted for Latex, default implementation simply calls and returns createTable\ncreateTableHtml - creates table formatted for Html, default implementation simply calls and returns createTable\nprintTablesLatex - called to output all tables in a LaTex format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs\nprintTablesHtml - called to output all tables in a Html format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs\nprintTablesAuto - tests the incoming call for a LaTex environment and calls either printTablesLatex or printTablesHtml as appropiate, used for markdown reports that can be user-generated in mulitple formats\niterateSurvey - a generic function that crawls through two loops, one for survey groups, one for specific tables (one analysis may output mulitiple tables) and is called by the printTable functions\nprintPlots - called to output ggplot outputs stored as part of analysis"
   },
   {
     "objectID": "FinCatchAnalysis_0_BaseObject.html#overriding-base-object",
     "href": "FinCatchAnalysis_0_BaseObject.html#overriding-base-object",
-    "title": "7  Base Object",
-    "section": "7.2 Overriding Base Object",
-    "text": "7.2 Overriding Base Object\nThe fc_base object can be extended and customized to produce objects for specific analysis. See details in “Creating Analyis Chapter”."
+    "title": "9  Base Object",
+    "section": "9.2 Overriding Base Object",
+    "text": "9.2 Overriding Base Object\nThe fc_base object can be extended and customized to produce objects for specific analysis. See details in “Creating Analyis Chapter”."
   },
   {
     "objectID": "FinCatchAnalysis_1_Objects.html#fc_counts-object",
@@ -222,5 +222,54 @@
     "title": "Data Access R Package",
     "section": "Principles",
     "text": "Principles\nBy Using myData Object:\n\nOnly data that’s needed is loaded\nData is cached\nData is only retrieved once for entire analysis string\n\nBy Using Separate Data Access Package:\n\nIsolates and generalizes data access\nAllows analysis code to use different sources of data\nAllows different scripts to use different authentications for data access"
+  },
+  {
+    "objectID": "FinCatchAnalysis_DataObject.html#creating-fincatch-data-objects",
+    "href": "FinCatchAnalysis_DataObject.html#creating-fincatch-data-objects",
+    "title": "6  Data Object",
+    "section": "6.1 Creating FinCatch Data Objects",
+    "text": "6.1 Creating FinCatch Data Objects"
+  },
+  {
+    "objectID": "FinCatchAnalysis_DataObject.html#data-caching-and-retrieval",
+    "href": "FinCatchAnalysis_DataObject.html#data-caching-and-retrieval",
+    "title": "6  Data Object",
+    "section": "6.2 Data Caching And Retrieval",
+    "text": "6.2 Data Caching And Retrieval\nData is cached in the “data_…” and “codes_…” properties of the object. Data and codes are retrieved from the data object using the “get_data_…” and “get_codes_…” functions. These “get_” functions first check for cached data in the “data_” objects and returns it; otherwise they will retrieve it from the database, cache it in the “data_” objects, and return it. The names of “get_” functions match their counterparts in the “data_” objects. The “data_” objects are exposed to users (rather than hiding them as private objects) so that advanced users can utilize the FinCatchAnalysis package and the data object by directly saving data to the cache.\n\n\n\n\n\n\nRetrieving Data\n\n\n\nData should always be retrieved using “get_” functions, so that caching works. Trying to retrieve data directly from the “data_” and “code_” cache objects opens up logic errors where lack of data and yet-to-be retrieved data are confused and confounded.\n\n\n\n\n\n\n\n\nCaution\n\n\n\nWhile data column names may be renamed and table structures combined and split during caching operations, data should not be modified in any way that introduce assumptions or potential bias. These type of operations should use “get_calc_” and “calc_” names as described below!"
+  },
+  {
+    "objectID": "FinCatchAnalysis_DataObject.html#calculated-data",
+    "href": "FinCatchAnalysis_DataObject.html#calculated-data",
+    "title": "6  Data Object",
+    "section": "6.3 Calculated Data",
+    "text": "6.3 Calculated Data\nCommonly used calculations are defined in the the data object so that they do not need to be repeated in the same analysis chain or report. One example would be length-frequency extrapolations when part of a fish sample are sub-sampled for length and then extrapolated by fish counts. These calculations are defined and retrieved in “get_calc_…” functions with their results cached in “data_…” objects similar to the “data_” and “code_” objects."
+  },
+  {
+    "objectID": "FinCatchAnalysis_DataObject.html#warnings-and-errors",
+    "href": "FinCatchAnalysis_DataObject.html#warnings-and-errors",
+    "title": "6  Data Object",
+    "section": "6.4 Warnings and Errors",
+    "text": "6.4 Warnings and Errors\nWarning and error properties exist in the data object. These accumulate potential issues encountered when retrieving data/codes from the database or when performing calculations (such as extrapolated length-freqencies from a small subsample). These errors are printed to the console when the FinCatchAnalysis package is used interactively.\n\n\n\n\n\n\nImportant\n\n\n\nWhen the FinCatchAnalysis package is used in a non-interactive environment like markdown, quarto, or shiny, it is important that these warnings and errors are explicitly and intentionally shown to the end user as part of the output!"
+  },
+  {
+    "objectID": "FinCatchAnalysis_DataObject.html#available-data",
+    "href": "FinCatchAnalysis_DataObject.html#available-data",
+    "title": "6  Data Object",
+    "section": "6.5 Available Data",
+    "text": "6.5 Available Data"
+  },
+  {
+    "objectID": "FinCatchAnalysis_DataObject.html#available-code",
+    "href": "FinCatchAnalysis_DataObject.html#available-code",
+    "title": "6  Data Object",
+    "section": "6.6 Available Code",
+    "text": "6.6 Available Code"
+  },
+  {
+    "objectID": "FinCatchAnalysis_DataObject.html#available-calcs",
+    "href": "FinCatchAnalysis_DataObject.html#available-calcs",
+    "title": "6  Data Object",
+    "section": "6.7 Available Calcs",
+    "text": "6.7 Available Calcs"
   }
 ]

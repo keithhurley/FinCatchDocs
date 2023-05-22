@@ -18,6 +18,8 @@ book:
     - part: Analysis R Package
       chapters:
         - FinCatchAnalysis_0.qmd
+        - FinCatchAnalysis_DataObject.qmd
+        - FInCatchAnalysis_WarningsErrors.qmd
         - FinCatchAnalysis_0_ExampleScript.qmd
         - FinCatchAnalysis_0_BaseObject.qmd
         - FinCatchAnalysis_1_Objects.qmd

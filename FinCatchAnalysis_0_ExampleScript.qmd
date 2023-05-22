@@ -18,4 +18,12 @@ myAnalysis$printTablesAuto()
 
 #if you want canned plots
 myAnalysis$plots
+
+#view potential data problems
+myDataObject$warnings
+myDataObject$errors
+
+#view analysis issues
+myAnalysis$warnings
+myAnalysis$errors
 ```

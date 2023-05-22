@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FinCatch Documentation - 7&nbsp; Base Object</title>
+<title>FinCatch Documentation - 9&nbsp; Base Object</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0.html">Analysis R Package</a></li><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0_BaseObject.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Base Object</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0.html">Analysis R Package</a></li><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0_BaseObject.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Base Object</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -156,38 +156,50 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./FinCatchAnalysis_DataObject.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Object</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./FInCatchAnalysis_WarningsErrors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Warnings and Errors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./FinCatchAnalysis_0_ExampleScript.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Example Script</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Example Script</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./FinCatchAnalysis_0_BaseObject.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Base Object</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Base Object</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./FinCatchAnalysis_1_Objects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Objects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Objects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./FinCatchAnalysis_1_Methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./FinCatchAnalysis_2_HelperFunctions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Helpers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Helpers</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./FinCatchAnalysis_3_CreateAnalysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Create Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Create Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -210,12 +222,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose"><span class="header-section-number">7.1</span> Purpose</a>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose"><span class="header-section-number">9.1</span> Purpose</a>
   <ul class="collapse">
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="header-section-number">7.1.1</span> Variables</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">7.1.2</span> Methods</a></li>
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="header-section-number">9.1.1</span> Variables</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">9.1.2</span> Methods</a></li>
   </ul></li>
-  <li><a href="#overriding-base-object" id="toc-overriding-base-object" class="nav-link" data-scroll-target="#overriding-base-object"><span class="header-section-number">7.2</span> Overriding Base Object</a></li>
+  <li><a href="#overriding-base-object" id="toc-overriding-base-object" class="nav-link" data-scroll-target="#overriding-base-object"><span class="header-section-number">9.2</span> Overriding Base Object</a></li>
   </ul>
 </nav>
     </div>
@@ -224,7 +236,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Base Object</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Base Object</span></h1>
 </div>
 
 
@@ -239,11 +251,11 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="purpose" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">7.1</span> Purpose</h2>
+<section id="purpose" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">9.1</span> Purpose</h2>
 <p>Provides a common interface for results regardless of what analysis is run.</p>
-<section id="variables" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="variables"><span class="header-section-number">7.1.1</span> Variables</h3>
+<section id="variables" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="variables"><span class="header-section-number">9.1.1</span> Variables</h3>
 <ul>
 <li><p>analysisTitle - (string) Description of the analysis stored in the object, used for headers and titles in reports and displays</p></li>
 <li><p>exportName - (string) Name used when generating file download names, no spaces or punctuation should be used</p></li>
@@ -261,8 +273,8 @@ ul.task-list li input[type="checkbox"] {
 <li><p>gtTheme - (string) Name of gt tables theme from the gtExtras package, used in HTML outputs only</p></li>
 </ul>
 </section>
-<section id="methods" class="level3" data-number="7.1.2">
-<h3 data-number="7.1.2" class="anchored" data-anchor-id="methods"><span class="header-section-number">7.1.2</span> Methods</h3>
+<section id="methods" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="methods"><span class="header-section-number">9.1.2</span> Methods</h3>
 <ul>
 <li><p>print - method used by R to print the results variable</p></li>
 <li><p>exportJson - method used to create and save Json file of results, no default implementation</p></li>
@@ -278,8 +290,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="overriding-base-object" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="overriding-base-object"><span class="header-section-number">7.2</span> Overriding Base Object</h2>
+<section id="overriding-base-object" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="overriding-base-object"><span class="header-section-number">9.2</span> Overriding Base Object</h2>
 <p>The fc_base object can be extended and customized to produce objects for specific analysis. See details in “Creating Analyis Chapter”.</p>
 
 
@@ -522,12 +534,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./FinCatchAnalysis_0_ExampleScript.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Example Script</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Example Script</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./FinCatchAnalysis_1_Objects.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Objects</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Objects</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

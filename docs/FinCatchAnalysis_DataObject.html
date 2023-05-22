@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FinCatch Documentation - 5&nbsp; Overview</title>
+<title>FinCatch Documentation - 6&nbsp; Data Object</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./FinCatchAnalysis_DataObject.html" rel="next">
-<link href="./FinCatch_Architecture.html" rel="prev">
+<link href="./FInCatchAnalysis_WarningsErrors.html" rel="next">
+<link href="./FinCatchAnalysis_0.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0.html">Analysis R Package</a></li><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0.html">Analysis R Package</a></li><li class="breadcrumb-item"><a href="./FinCatchAnalysis_DataObject.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Object</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -150,13 +150,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FinCatchAnalysis_0.html" class="sidebar-item-text sidebar-link active">
+  <a href="./FinCatchAnalysis_0.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FinCatchAnalysis_DataObject.html" class="sidebar-item-text sidebar-link">
+  <a href="./FinCatchAnalysis_DataObject.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Object</span></span></a>
   </div>
 </li>
@@ -222,9 +222,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#analysis-functions" id="toc-analysis-functions" class="nav-link" data-scroll-target="#analysis-functions"><span class="header-section-number">5.1</span> Analysis Functions</a></li>
-  <li><a href="#analysis-return-objects" id="toc-analysis-return-objects" class="nav-link" data-scroll-target="#analysis-return-objects"><span class="header-section-number">5.2</span> Analysis Return Objects</a></li>
+  <li><a href="#creating-fincatch-data-objects" id="toc-creating-fincatch-data-objects" class="nav-link active" data-scroll-target="#creating-fincatch-data-objects"><span class="header-section-number">6.1</span> Creating FinCatch Data Objects</a></li>
+  <li><a href="#data-caching-and-retrieval" id="toc-data-caching-and-retrieval" class="nav-link" data-scroll-target="#data-caching-and-retrieval"><span class="header-section-number">6.2</span> Data Caching And Retrieval</a></li>
+  <li><a href="#calculated-data" id="toc-calculated-data" class="nav-link" data-scroll-target="#calculated-data"><span class="header-section-number">6.3</span> Calculated Data</a></li>
+  <li><a href="#warnings-and-errors" id="toc-warnings-and-errors" class="nav-link" data-scroll-target="#warnings-and-errors"><span class="header-section-number">6.4</span> Warnings and Errors</a></li>
+  <li><a href="#available-data" id="toc-available-data" class="nav-link" data-scroll-target="#available-data"><span class="header-section-number">6.5</span> Available Data</a></li>
+  <li><a href="#available-code" id="toc-available-code" class="nav-link" data-scroll-target="#available-code"><span class="header-section-number">6.6</span> Available Code</a></li>
+  <li><a href="#available-calcs" id="toc-available-calcs" class="nav-link" data-scroll-target="#available-calcs"><span class="header-section-number">6.7</span> Available Calcs</a></li>
   </ul>
 </nav>
     </div>
@@ -233,7 +237,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Object</span></h1>
 </div>
 
 
@@ -248,16 +252,82 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="overview" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="overview">Overview</h2>
-<p>The FinCatchAnalysis (FCA) R package centralizes standard analysis functions for the FinCatch system and promotes DRY and reusable analysis code practices. The FCA package is built on top of R6 classes which provides a standard programming interface for users of the R package. Analysis functions are available for each individual analysis available and results from each analysis function returns results encapsulated in an R6 class object. All public functions in the package are prefixed with “fca_”. Package R6 objects are prefixed with “fco_”.</p>
+<p>The data object serves a couple of functions. First, it provides a central method and common approach for data retrieval from the FinCatch system. It stores the filters used for retrieval and provides a standard diction for calling the data retrieval functions in the FinCatchAccess package. Second, it provides a caching mechanism so that during an analysis chain or report, data will only be downloaded/retrieved from the database once. Additionally, any commonly used calculations (i.e.&nbsp;length-frequency extrapolations) can be defined and cached as well.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If the filter objects used in creating the data object change, the data object should be destroyed and re-created to ensure the cached data and filters remain synchronized!</p>
+</div>
+</div>
+<section id="creating-fincatch-data-objects" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="creating-fincatch-data-objects"><span class="header-section-number">6.1</span> Creating FinCatch Data Objects</h2>
 </section>
-<section id="analysis-functions" class="level2 numbered" data-number="5.1">
-<h2 class="numbered anchored" data-number="5.1" data-anchor-id="analysis-functions"><span class="header-section-number">5.1</span> Analysis Functions</h2>
-<p>Each analysis function in the FCA package provides a single call for an independent analysis and returns a function specific R6 object built on the base fco_ object that provides standard methods and data objects.</p>
+<section id="data-caching-and-retrieval" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="data-caching-and-retrieval"><span class="header-section-number">6.2</span> Data Caching And Retrieval</h2>
+<p>Data is cached in the “data_…” and “codes_…” properties of the object. Data and codes are retrieved from the data object using the “get_data_…” and “get_codes_…” functions. These “get_” functions first check for cached data in the “data_” objects and returns it; otherwise they will retrieve it from the database, cache it in the “data_” objects, and return it. The names of “get_” functions match their counterparts in the “data_” objects. The “data_” objects are exposed to users (rather than hiding them as private objects) so that advanced users can utilize the FinCatchAnalysis package and the data object by directly saving data to the cache.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Retrieving Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Data should always be retrieved using “get_” functions, so that caching works. Trying to retrieve data directly from the “data_” and “code_” cache objects opens up logic errors where lack of data and yet-to-be retrieved data are confused and confounded.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While data column names may be renamed and table structures combined and split during caching operations, data should not be modified in any way that introduce assumptions or potential bias. These type of operations should use “get_calc_” and “calc_” names as described below!</p>
+</div>
+</div>
 </section>
-<section id="analysis-return-objects" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="analysis-return-objects"><span class="header-section-number">5.2</span> Analysis Return Objects</h2>
+<section id="calculated-data" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="calculated-data"><span class="header-section-number">6.3</span> Calculated Data</h2>
+<p>Commonly used calculations are defined in the the data object so that they do not need to be repeated in the same analysis chain or report. One example would be length-frequency extrapolations when part of a fish sample are sub-sampled for length and then extrapolated by fish counts. These calculations are defined and retrieved in “get_calc_…” functions with their results cached in “data_…” objects similar to the “data_” and “code_” objects.</p>
+</section>
+<section id="warnings-and-errors" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="warnings-and-errors"><span class="header-section-number">6.4</span> Warnings and Errors</h2>
+<p>Warning and error properties exist in the data object. These accumulate potential issues encountered when retrieving data/codes from the database or when performing calculations (such as extrapolated length-freqencies from a small subsample). These errors are printed to the console when the FinCatchAnalysis package is used interactively.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When the FinCatchAnalysis package is used in a non-interactive environment like markdown, quarto, or shiny, it is important that these warnings and errors are explicitly and intentionally shown to the end user as part of the output!</p>
+</div>
+</div>
+</section>
+<section id="available-data" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="available-data"><span class="header-section-number">6.5</span> Available Data</h2>
+</section>
+<section id="available-code" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="available-code"><span class="header-section-number">6.6</span> Available Code</h2>
+</section>
+<section id="available-calcs" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="available-calcs"><span class="header-section-number">6.7</span> Available Calcs</h2>
 
 
 </section>
@@ -498,13 +568,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./FinCatch_Architecture.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Architecture</span></span>
+      <a href="./FinCatchAnalysis_0.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./FinCatchAnalysis_DataObject.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Object</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./FInCatchAnalysis_WarningsErrors.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Warnings and Errors</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

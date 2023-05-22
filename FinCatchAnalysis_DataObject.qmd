@@ -1,0 +1,41 @@
+# Data Object
+
+The data object serves a couple of functions. First, it provides a central method and common approach for data retrieval from the FinCatch system. It stores the filters used for retrieval and provides a standard diction for calling the data retrieval functions in the FinCatchAccess package. Second, it provides a caching mechanism so that during an analysis chain or report, data will only be downloaded/retrieved from the database once. Additionally, any commonly used calculations (i.e. length-frequency extrapolations) can be defined and cached as well.
+
+::: callout-warning
+If the filter objects used in creating the data object change, the data object should be destroyed and re-created to ensure the cached data and filters remain synchronized!
+:::
+
+## Creating FinCatch Data Objects
+
+## Data Caching And Retrieval
+
+Data is cached in the "data\_..." and "codes\_..." properties of the object. Data and codes are retrieved from the data object using the "get_data\_..." and "get_codes\_..." functions. These "get\_" functions first check for cached data in the "data\_" objects and returns it; otherwise they will retrieve it from the database, cache it in the "data\_" objects, and return it. The names of "get\_" functions match their counterparts in the "data\_" objects. The "data\_" objects are exposed to users (rather than hiding them as private objects) so that advanced users can utilize the FinCatchAnalysis package and the data object by directly saving data to the cache.
+
+::: callout-important
+## Retrieving Data
+
+Data should always be retrieved using "get\_" functions, so that caching works. Trying to retrieve data directly from the "data\_" and "code\_" cache objects opens up logic errors where lack of data and yet-to-be retrieved data are confused and confounded.
+:::
+
+::: callout-caution
+While data column names may be renamed and table structures combined and split during caching operations, data should not be modified in any way that introduce assumptions or potential bias. These type of operations should use "get_calc\_" and "calc\_" names as described below!
+:::
+
+## Calculated Data
+
+Commonly used calculations are defined in the the data object so that they do not need to be repeated in the same analysis chain or report. One example would be length-frequency extrapolations when part of a fish sample are sub-sampled for length and then extrapolated by fish counts. These calculations are defined and retrieved in "get_calc\_..." functions with their results cached in "data\_..." objects similar to the "data\_" and "code\_" objects.
+
+## Warnings and Errors
+
+Warning and error properties exist in the data object. These accumulate potential issues encountered when retrieving data/codes from the database or when performing calculations (such as extrapolated length-freqencies from a small subsample). These errors are printed to the console when the FinCatchAnalysis package is used interactively.
+
+::: callout-important
+When the FinCatchAnalysis package is used in a non-interactive environment like markdown, quarto, or shiny, it is important that these warnings and errors are explicitly and intentionally shown to the end user as part of the output!
+:::
+
+## Available Data
+
+## Available Code
+
+## Available Calcs

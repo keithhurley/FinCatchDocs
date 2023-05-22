@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FinCatch Documentation - 5&nbsp; Overview</title>
+<title>FinCatch Documentation - 7&nbsp; Warnings and Errors</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./FinCatchAnalysis_DataObject.html" rel="next">
-<link href="./FinCatch_Architecture.html" rel="prev">
+<link href="./FinCatchAnalysis_0_ExampleScript.html" rel="next">
+<link href="./FinCatchAnalysis_DataObject.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0.html">Analysis R Package</a></li><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0.html">Analysis R Package</a></li><li class="breadcrumb-item"><a href="./FInCatchAnalysis_WarningsErrors.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Warnings and Errors</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -150,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FinCatchAnalysis_0.html" class="sidebar-item-text sidebar-link active">
+  <a href="./FinCatchAnalysis_0.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
@@ -162,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FInCatchAnalysis_WarningsErrors.html" class="sidebar-item-text sidebar-link">
+  <a href="./FInCatchAnalysis_WarningsErrors.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Warnings and Errors</span></span></a>
   </div>
 </li>
@@ -218,22 +218,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#analysis-functions" id="toc-analysis-functions" class="nav-link" data-scroll-target="#analysis-functions"><span class="header-section-number">5.1</span> Analysis Functions</a></li>
-  <li><a href="#analysis-return-objects" id="toc-analysis-return-objects" class="nav-link" data-scroll-target="#analysis-return-objects"><span class="header-section-number">5.2</span> Analysis Return Objects</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Warnings and Errors</span></h1>
 </div>
 
 
@@ -248,19 +240,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="overview" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="overview">Overview</h2>
-<p>The FinCatchAnalysis (FCA) R package centralizes standard analysis functions for the FinCatch system and promotes DRY and reusable analysis code practices. The FCA package is built on top of R6 classes which provides a standard programming interface for users of the R package. Analysis functions are available for each individual analysis available and results from each analysis function returns results encapsulated in an R6 class object. All public functions in the package are prefixed with “fca_”. Package R6 objects are prefixed with “fco_”.</p>
-</section>
-<section id="analysis-functions" class="level2 numbered" data-number="5.1">
-<h2 class="numbered anchored" data-number="5.1" data-anchor-id="analysis-functions"><span class="header-section-number">5.1</span> Analysis Functions</h2>
-<p>Each analysis function in the FCA package provides a single call for an independent analysis and returns a function specific R6 object built on the base fco_ object that provides standard methods and data objects.</p>
-</section>
-<section id="analysis-return-objects" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="analysis-return-objects"><span class="header-section-number">5.2</span> Analysis Return Objects</h2>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -498,13 +479,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./FinCatch_Architecture.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Architecture</span></span>
+      <a href="./FinCatchAnalysis_DataObject.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Object</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./FinCatchAnalysis_DataObject.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Object</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./FinCatchAnalysis_0_ExampleScript.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Example Script</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
