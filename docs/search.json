@@ -105,102 +105,165 @@
     "text": "4.3 Principles\nBy Using myData Object:\n\nOnly data that’s needed is loaded\nData is cached\nData is only retrieved once for entire analysis string\n\nBy Using Separate Data Access Package:\n\nIsolates and generalizes data access\nAllows analysis code to use different sources of data\nAllows different scripts to use different authentications for data access"
   },
   {
+    "objectID": "FinCatchDE_0_Deployment.html#before-deployment",
+    "href": "FinCatchDE_0_Deployment.html#before-deployment",
+    "title": "5  FinCatchDE Deployment",
+    "section": "5.1 Before Deployment",
+    "text": "5.1 Before Deployment\nChange:\n1.       ConnectionString in AppSettings.json\n2.       redirectUri at line 45 in previousFishSamples\n3.       redirectUri at line 164 in previousWaterSamples\n4.       auth0 settings in clsAuthFunctions, fetchController.cs, and index.tsx"
+  },
+  {
+    "objectID": "FinCatchDE_0_Deployment.html#deployment-steps",
+    "href": "FinCatchDE_0_Deployment.html#deployment-steps",
+    "title": "5  FinCatchDE Deployment",
+    "section": "5.2 Deployment Steps",
+    "text": "5.2 Deployment Steps\nThe application needs to be self-contained (See REF-3 and REF-4); you might want to investigate publishing the application through Visual Studio’s IIS publishing, but this is the way that has worked best for our development.\n1.       Open the Projects in Visual Studio\n2.       Ensure the application runs locally through Visual Studio\n3.       Right click the solution and select Publish...\n4.       Select the Web Server (IIS) Target\n5.       Select Web Deploy Package\n6.       Put the package location in the same folder as the project\n7.       Any name will do for the Site Name, we did Fish-Test, and click finish\n8.       Select Show All Settings\n9.       Change Deployment mode to Self-contained\n10.    Change the target runtime to the required runtime (for us that was win-x64)\n11.    Select Save\n12.    Click the Publish button\n13.    Wait for the Publish to be successful\n14.    Open the Console/Git Bash/PowerShell\n15.    Navigate to fisheries-field-sampling\\FisheriesFieldSampling\\FisheriesFieldSampling\\client-app\\ \n16.    Run npm run build\n17.    Open File Explorer\n18.    Navigate to fisheries-field-sampling\\FisheriesFieldSampling\\FisheriesFieldSampling\\client-app\\\n19.    Copy the build folder within the project\n20.    Navigate to the newly created zip file from the Publish button\n21.    Extract into a folder named publish\n22.    Navigate to publish\\Content\\D_C\\GitHub\\fish-test\\fisheries-field-sampling\\FisheriesFieldSampling\\FisheriesFieldSampling\\obj\\Release\\netcoreapp3.1\\win-x64\\PubTmp\\Out\\client-app folder\n23.    Replace the build folder with the copied build folder\n24.    Copy everything within the publish\\Content\\D_C\\GitHub\\fish-test\\fisheries-field-sampling\\FisheriesFieldSampling\\FisheriesFieldSampling\\obj\\Release\\netcoreapp3.1\\win-x64\\PubTmp\\Out\\ folder\n25.    Open Remote Desktop\n26.    Connect to the fincatchag.fishstaff.info computer\n27.    Open the file explorer on the Remote Desktop\n28.    Replace the contents of C:\\Websites\\FinCatchDE with the copied files/folders\n29.    Open the IIS Manager\n30.    Restart the FinCatchDE website"
+  },
+  {
     "objectID": "FinCatchAnalysis_0.html#overview",
     "href": "FinCatchAnalysis_0.html#overview",
-    "title": "5  Overview",
+    "title": "6  Overview",
     "section": "Overview",
     "text": "Overview\nThe FinCatchAnalysis (FCA) R package centralizes standard analysis functions for the FinCatch system and promotes DRY and reusable analysis code practices. The FCA package is built on top of R6 classes which provides a standard programming interface for users of the R package. Analysis functions are available for each individual analysis available and results from each analysis function returns results encapsulated in an R6 class object. All public functions in the package are prefixed with “fca_”. Package R6 objects are prefixed with “fco_”."
   },
   {
     "objectID": "FinCatchAnalysis_0.html#analysis-functions",
     "href": "FinCatchAnalysis_0.html#analysis-functions",
-    "title": "5  Overview",
-    "section": "5.1 Analysis Functions",
-    "text": "5.1 Analysis Functions\nEach analysis function in the FCA package provides a single call for an independent analysis and returns a function specific R6 object built on the base fco_ object that provides standard methods and data objects."
+    "title": "6  Overview",
+    "section": "6.1 Analysis Functions",
+    "text": "6.1 Analysis Functions\nEach analysis function in the FCA package provides a single call for an independent analysis and returns a function specific R6 object built on the base fco_ object that provides standard methods and data objects."
   },
   {
     "objectID": "FinCatchAnalysis_0.html#analysis-return-objects",
     "href": "FinCatchAnalysis_0.html#analysis-return-objects",
-    "title": "5  Overview",
-    "section": "5.2 Analysis Return Objects",
-    "text": "5.2 Analysis Return Objects"
+    "title": "6  Overview",
+    "section": "6.2 Analysis Return Objects",
+    "text": "6.2 Analysis Return Objects"
+  },
+  {
+    "objectID": "FinCatchAnalysis_DataObject.html#creating-fincatch-data-objects",
+    "href": "FinCatchAnalysis_DataObject.html#creating-fincatch-data-objects",
+    "title": "7  Data Object",
+    "section": "7.1 Creating FinCatch Data Objects",
+    "text": "7.1 Creating FinCatch Data Objects"
+  },
+  {
+    "objectID": "FinCatchAnalysis_DataObject.html#data-caching-and-retrieval",
+    "href": "FinCatchAnalysis_DataObject.html#data-caching-and-retrieval",
+    "title": "7  Data Object",
+    "section": "7.2 Data Caching And Retrieval",
+    "text": "7.2 Data Caching And Retrieval\nData is cached in the “data_…” and “codes_…” properties of the object. Data and codes are retrieved from the data object using the “get_data_…” and “get_codes_…” functions. These “get_” functions first check for cached data in the “data_” objects and returns it; otherwise they will retrieve it from the database, cache it in the “data_” objects, and return it. The names of “get_” functions match their counterparts in the “data_” objects. The “data_” objects are exposed to users (rather than hiding them as private objects) so that advanced users can utilize the FinCatchAnalysis package and the data object by directly saving data to the cache.\n\n\n\n\n\n\nRetrieving Data\n\n\n\nData should always be retrieved using “get_” functions, so that caching works. Trying to retrieve data directly from the “data_” and “code_” cache objects opens up logic errors where lack of data and yet-to-be retrieved data are confused and confounded.\n\n\n\n\n\n\n\n\nCaution\n\n\n\nWhile data column names may be renamed and table structures combined and split during caching operations, data should not be modified in any way that introduce assumptions or potential bias. These type of operations should use “get_calc_” and “calc_” names as described below!"
+  },
+  {
+    "objectID": "FinCatchAnalysis_DataObject.html#calculated-data",
+    "href": "FinCatchAnalysis_DataObject.html#calculated-data",
+    "title": "7  Data Object",
+    "section": "7.3 Calculated Data",
+    "text": "7.3 Calculated Data\nCommonly used calculations are defined in the the data object so that they do not need to be repeated in the same analysis chain or report. One example would be length-frequency extrapolations when part of a fish sample are sub-sampled for length and then extrapolated by fish counts. These calculations are defined and retrieved in “get_calc_…” functions with their results cached in “data_…” objects similar to the “data_” and “code_” objects."
+  },
+  {
+    "objectID": "FinCatchAnalysis_DataObject.html#warnings-and-errors",
+    "href": "FinCatchAnalysis_DataObject.html#warnings-and-errors",
+    "title": "7  Data Object",
+    "section": "7.4 Warnings and Errors",
+    "text": "7.4 Warnings and Errors\nWarning and error properties exist in the data object. These accumulate potential issues encountered when retrieving data/codes from the database or when performing calculations (such as extrapolated length-freqencies from a small subsample). These errors are printed to the console when the FinCatchAnalysis package is used interactively.\n\n\n\n\n\n\nImportant\n\n\n\nWhen the FinCatchAnalysis package is used in a non-interactive environment like markdown, quarto, or shiny, it is important that these warnings and errors are explicitly and intentionally shown to the end user as part of the output!"
+  },
+  {
+    "objectID": "FinCatchAnalysis_DataObject.html#available-data",
+    "href": "FinCatchAnalysis_DataObject.html#available-data",
+    "title": "7  Data Object",
+    "section": "7.5 Available Data",
+    "text": "7.5 Available Data"
+  },
+  {
+    "objectID": "FinCatchAnalysis_DataObject.html#available-code",
+    "href": "FinCatchAnalysis_DataObject.html#available-code",
+    "title": "7  Data Object",
+    "section": "7.6 Available Code",
+    "text": "7.6 Available Code"
+  },
+  {
+    "objectID": "FinCatchAnalysis_DataObject.html#available-calcs",
+    "href": "FinCatchAnalysis_DataObject.html#available-calcs",
+    "title": "7  Data Object",
+    "section": "7.7 Available Calcs",
+    "text": "7.7 Available Calcs"
   },
   {
     "objectID": "FinCatchAnalysis_0_ExampleScript.html",
     "href": "FinCatchAnalysis_0_ExampleScript.html",
-    "title": "8  Example Script",
+    "title": "9  Example Script",
     "section": "",
-    "text": "library(FinCatchAccess)\nlibrary(FinCatchAnalysis)\n\n#use filters gadget to make a filter object\nmyFilters&lt;-fcacc_show_FilterSelector_gadget()\n\n#feed the filter object with your ID values into a data object\nmyDataObject&lt;-fc_data$new(myFilterObject=myFilters, myGroupSurveys=TRUE)\n\n#run an analysis by feeding it the data object\nmyAnalysis&lt;-fca_meanLength(myDataObject)\n\n#print output tables with printTablesAuto/Html/Latex\nmyAnalysis$printTablesAuto()\n\n#if you want canned plots\nmyAnalysis$plots"
+    "text": "library(FinCatchAccess)\nlibrary(FinCatchAnalysis)\n\n#use filters gadget to make a filter object\nmyFilters&lt;-fcacc_show_FilterSelector_gadget()\n\n#feed the filter object with your ID values into a data object\nmyDataObject&lt;-fc_data$new(myFilterObject=myFilters, myGroupSurveys=TRUE)\n\n#run an analysis by feeding it the data object\nmyAnalysis&lt;-fca_meanLength(myDataObject)\n\n#print output tables with printTablesAuto/Html/Latex\nmyAnalysis$printTablesAuto()\n\n#if you want canned plots\nmyAnalysis$plots\n\n#view potential data problems\nmyDataObject$warnings\nmyDataObject$errors\n\n#view analysis issues\nmyAnalysis$warnings\nmyAnalysis$errors"
   },
   {
     "objectID": "FinCatchAnalysis_0_BaseObject.html#purpose",
     "href": "FinCatchAnalysis_0_BaseObject.html#purpose",
-    "title": "9  Base Object",
-    "section": "9.1 Purpose",
-    "text": "9.1 Purpose\nProvides a common interface for results regardless of what analysis is run.\n\n9.1.1 Variables\n\nanalysisTitle - (string) Description of the analysis stored in the object, used for headers and titles in reports and displays\nexportName - (string) Name used when generating file download names, no spaces or punctuation should be used\ndescriptionText - (string) Markdown text to be displayed in outputs prior to the output tables and figures\ntableTitle- (list&lt;string&gt;) Title text to be used on object tables, each item in list corresponds to one table output in printTables\ngroupByVars - (string) Comma-separated string of variable name to use as grouping variables within the tables\nsurveys - (dataframe) Dataframe containing survey-level data\nsamples - (dataframe) Dataframe containing samples\nresults - (list&lt;dataframes&gt;) List of dataframes containing results of analysis\nplots - (list&lt;ggplot objects&gt;) List of ggPlot objects created from analysis\nerrors - (list&lt;string&gt;) Error messages created during analysis\nwarnings- (list&lt;string&gt;) Warning messages created during analysis\ngroupHeaderBackgroundColor - (string) Color to be used in background of group header within table, groups are determined by the groupByVars variable, used in HTML outputs only\ngroupSummaryBackgroundColor - (string) Color to be used in the summary row of each group within table, groups are determined by the groupByVars variable, used in HTML outputs only\ngtTheme - (string) Name of gt tables theme from the gtExtras package, used in HTML outputs only\n\n\n\n9.1.2 Methods\n\nprint - method used by R to print the results variable\nexportJson - method used to create and save Json file of results, no default implementation\nexportCsv - method used to create and save Csv file of results, no default implementation\ncreateTable - generic table to create both Latex and Html tables for object\ncreateTableLatex - creates table formatted for Latex, default implementation simply calls and returns createTable\ncreateTableHtml - creates table formatted for Html, default implementation simply calls and returns createTable\nprintTablesLatex - called to output all tables in a LaTex format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs\nprintTablesHtml - called to output all tables in a Html format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs\nprintTablesAuto - tests the incoming call for a LaTex environment and calls either printTablesLatex or printTablesHtml as appropiate, used for markdown reports that can be user-generated in mulitple formats\niterateSurvey - a generic function that crawls through two loops, one for survey groups, one for specific tables (one analysis may output mulitiple tables) and is called by the printTable functions\nprintPlots - called to output ggplot outputs stored as part of analysis"
+    "title": "10  Base Object",
+    "section": "10.1 Purpose",
+    "text": "10.1 Purpose\nProvides a common interface for results regardless of what analysis is run.\n\n10.1.1 Variables\n\nanalysisTitle - (string) Description of the analysis stored in the object, used for headers and titles in reports and displays\nexportName - (string) Name used when generating file download names, no spaces or punctuation should be used\ndescriptionText - (string) Markdown text to be displayed in outputs prior to the output tables and figures\ntableTitle- (list&lt;string&gt;) Title text to be used on object tables, each item in list corresponds to one table output in printTables\ngroupByVars - (string) Comma-separated string of variable name to use as grouping variables within the tables\nsurveys - (dataframe) Dataframe containing survey-level data\nsamples - (dataframe) Dataframe containing samples\nresults - (list&lt;dataframes&gt;) List of dataframes containing results of analysis\nplots - (list&lt;ggplot objects&gt;) List of ggPlot objects created from analysis\nerrors - (list&lt;string&gt;) Error messages created during analysis\nwarnings- (list&lt;string&gt;) Warning messages created during analysis\ngroupHeaderBackgroundColor - (string) Color to be used in background of group header within table, groups are determined by the groupByVars variable, used in HTML outputs only\ngroupSummaryBackgroundColor - (string) Color to be used in the summary row of each group within table, groups are determined by the groupByVars variable, used in HTML outputs only\ngtTheme - (string) Name of gt tables theme from the gtExtras package, used in HTML outputs only\n\n\n\n10.1.2 Methods\n\nprint - method used by R to print the results variable\nexportJson - method used to create and save Json file of results, no default implementation\nexportCsv - method used to create and save Csv file of results, no default implementation\ncreateTable - generic table to create both Latex and Html tables for object\ncreateTableLatex - creates table formatted for Latex, default implementation simply calls and returns createTable\ncreateTableHtml - creates table formatted for Html, default implementation simply calls and returns createTable\nprintTablesLatex - called to output all tables in a LaTex format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs\nprintTablesHtml - called to output all tables in a Html format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs\nprintTablesAuto - tests the incoming call for a LaTex environment and calls either printTablesLatex or printTablesHtml as appropiate, used for markdown reports that can be user-generated in mulitple formats\niterateSurvey - a generic function that crawls through two loops, one for survey groups, one for specific tables (one analysis may output mulitiple tables) and is called by the printTable functions\nprintPlots - called to output ggplot outputs stored as part of analysis"
   },
   {
     "objectID": "FinCatchAnalysis_0_BaseObject.html#overriding-base-object",
     "href": "FinCatchAnalysis_0_BaseObject.html#overriding-base-object",
-    "title": "9  Base Object",
-    "section": "9.2 Overriding Base Object",
-    "text": "9.2 Overriding Base Object\nThe fc_base object can be extended and customized to produce objects for specific analysis. See details in “Creating Analyis Chapter”."
+    "title": "10  Base Object",
+    "section": "10.2 Overriding Base Object",
+    "text": "10.2 Overriding Base Object\nThe fc_base object can be extended and customized to produce objects for specific analysis. See details in “Creating Analyis Chapter”."
   },
   {
     "objectID": "FinCatchAnalysis_1_Objects.html#fc_counts-object",
     "href": "FinCatchAnalysis_1_Objects.html#fc_counts-object",
-    "title": "8  Objects",
-    "section": "8.1 fc_counts Object",
-    "text": "8.1 fc_counts Object"
+    "title": "11  Objects",
+    "section": "11.1 fc_counts Object",
+    "text": "11.1 fc_counts Object"
   },
   {
     "objectID": "FinCatchAnalysis_1_Objects.html#fc_fishsamplemedtadata",
     "href": "FinCatchAnalysis_1_Objects.html#fc_fishsamplemedtadata",
-    "title": "8  Objects",
-    "section": "8.2 fc_fishSampleMedtadata",
-    "text": "8.2 fc_fishSampleMedtadata"
+    "title": "11  Objects",
+    "section": "11.2 fc_fishSampleMedtadata",
+    "text": "11.2 fc_fishSampleMedtadata"
   },
   {
     "objectID": "FinCatchAnalysis_1_Methods.html#fca_counts",
     "href": "FinCatchAnalysis_1_Methods.html#fca_counts",
-    "title": "9  Methods",
-    "section": "9.1 fca_counts",
-    "text": "9.1 fca_counts\n\nsummarizes number of fish caught in samples by species and gender\nreturns fc_counts object"
+    "title": "12  Methods",
+    "section": "12.1 fca_counts",
+    "text": "12.1 fca_counts\n\nsummarizes number of fish caught in samples by species and gender\nreturns fc_counts object"
   },
   {
     "objectID": "FinCatchAnalysis_1_Methods.html#fca_fishsamplemetadata",
     "href": "FinCatchAnalysis_1_Methods.html#fca_fishsamplemetadata",
-    "title": "9  Methods",
-    "section": "9.2 fca_fishSampleMetadata",
-    "text": "9.2 fca_fishSampleMetadata\n\nreturns metadata for fish samples included in analysis\nreturns fc_fishSampleMetadata object"
+    "title": "12  Methods",
+    "section": "12.2 fca_fishSampleMetadata",
+    "text": "12.2 fca_fishSampleMetadata\n\nreturns metadata for fish samples included in analysis\nreturns fc_fishSampleMetadata object"
   },
   {
     "objectID": "FinCatchAnalysis_2_HelperFunctions.html#dplyr-verbs",
     "href": "FinCatchAnalysis_2_HelperFunctions.html#dplyr-verbs",
-    "title": "10  Helpers",
-    "section": "10.1 Dplyr Verbs",
-    "text": "10.1 Dplyr Verbs\n\n10.1.1 AddStockCategory\nThis function works as a dplyr verb and adds a column containing a factor of stock-length categories from Gabelhouse’s 5-cell model. The function takes the name of the column containing the species code, the column containing the fish length (in mm), and a reference to the data object for the analysis (needed to retrieve species code and stock length values). The function defaults to full group names as factor labels; use abbrieviations=TRUE to use category abbrieviations instead.\nExample:\nsome_data %&gt;%\n  AddStockCategory(sppCode, fishLen, someDataObject, useAbbreviations = TRUE) \n\n\n10.1.2 AddWrParameters\nThis dplyr verb has yet to be implented\n\n\n10.1.3 AddAgeIntercept\nThis dplyr verb has yet to be implemented"
+    "title": "13  Helpers",
+    "section": "13.1 Dplyr Verbs",
+    "text": "13.1 Dplyr Verbs\n\n13.1.1 AddStockCategory\nThis function works as a dplyr verb and adds a column containing a factor of stock-length categories from Gabelhouse’s 5-cell model. The function takes the name of the column containing the species code, the column containing the fish length (in mm), and a reference to the data object for the analysis (needed to retrieve species code and stock length values). The function defaults to full group names as factor labels; use abbrieviations=TRUE to use category abbrieviations instead.\nExample:\nsome_data %&gt;%\n  AddStockCategory(sppCode, fishLen, someDataObject, useAbbreviations = TRUE) \n\n\n13.1.2 AddWrParameters\nThis dplyr verb has yet to be implented\n\n\n13.1.3 AddAgeIntercept\nThis dplyr verb has yet to be implemented"
   },
   {
     "objectID": "FinCatchAnalysis_2_HelperFunctions.html#functions",
     "href": "FinCatchAnalysis_2_HelperFunctions.html#functions",
-    "title": "10  Helpers",
-    "section": "10.2 Functions",
-    "text": "10.2 Functions\n\n10.2.1 weighted.se.mean\nThis function calculates standard error around a weighted mean. The function assumes a weighted mean calculated by the “weighted.mean()” function in the stats package of R and accepts the same arguements.\nExample:\nsome_data=data.frame(xValue=c(3,4,6,3,2,3),\n                     xWeights=c(0.2, 0.2, 0.3, 0.1, 0.1, 0.1))\nsome_data %&gt;%\n  mutate(myWeightedMean=weighted.mean(xValue, xWeights, na.rm=TRUE),\n         myWeightedMeanSE=weighted.se.mean(xValue, xWeights, na.rm=TRUE))\n\n\n10.2.2 fca_getAnalysisFunctions\nThis function returns a list and description of the analysis functions available in the FinCatchAnalysis package.\nExample:\nfca_getAnalysisFunctions()"
+    "title": "13  Helpers",
+    "section": "13.2 Functions",
+    "text": "13.2 Functions\n\n13.2.1 weighted.se.mean\nThis function calculates standard error around a weighted mean. The function assumes a weighted mean calculated by the “weighted.mean()” function in the stats package of R and accepts the same arguements.\nExample:\nsome_data=data.frame(xValue=c(3,4,6,3,2,3),\n                     xWeights=c(0.2, 0.2, 0.3, 0.1, 0.1, 0.1))\nsome_data %&gt;%\n  mutate(myWeightedMean=weighted.mean(xValue, xWeights, na.rm=TRUE),\n         myWeightedMeanSE=weighted.se.mean(xValue, xWeights, na.rm=TRUE))\n\n\n13.2.2 fca_getAnalysisFunctions\nThis function returns a list and description of the analysis functions available in the FinCatchAnalysis package.\nExample:\nfca_getAnalysisFunctions()"
   },
   {
     "objectID": "FinCatchAnalysis_2_HelperFunctions.html#labelers",
     "href": "FinCatchAnalysis_2_HelperFunctions.html#labelers",
-    "title": "10  Helpers",
-    "section": "10.3 Labelers",
-    "text": "10.3 Labelers\n\n10.3.1 fc_labeler_Survey\nThis function creates a label for each survey to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a reference to the analysis data object. The label returned is structured like:\n\nTitle1 (WB=5110 | Method=21 | Year=2022 | Season=Spring)\n\nExample:\nsome_data %&gt;%\n  mutate(surveyLabel=fc_labeler_Survey(surveyUid, aDataObject))\n\n\n10.3.2 fc_labeler_fishSample\nThis function creates a label for each fish sample to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a dataframe of fish samples in the analysis taken from the data object. The label returned is structured like:\n\nWB=2832 | Method=45 | 2022-03-11 | Station=627\n\nExample:\nsome_data %&gt;%\n  mutate(sampleLabel=fc_labeler_fishSample(surveyUid, aDataObject$get_data_samplesFish))\n\n\n10.3.3 fc_labeler_wqSample\nThis function creates a label for each fish sample to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a dataframe of fish samples in the analysis taken from the data object. The label returned is structured like:\n\nWB=2832 | 2022-03-11 | Station=627\n\nExample:\nsome_data %&gt;%\n  mutate(sampleLabel=fc_labeler_wqSample(surveyUid, aDataObject$get_data_samplesWq))\n\n\n10.3.4 fc_matchCodes\nwww\n\n\n10.3.5 fc_createCodeLabel\nwww\n\n\n10.3.6 fc_createCodeLabelReversed\nwww"
+    "title": "13  Helpers",
+    "section": "13.3 Labelers",
+    "text": "13.3 Labelers\n\n13.3.1 fc_labeler_Survey\nThis function creates a label for each survey to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a reference to the analysis data object. The label returned is structured like:\n\nTitle1 (WB=5110 | Method=21 | Year=2022 | Season=Spring)\n\nExample:\nsome_data %&gt;%\n  mutate(surveyLabel=fc_labeler_Survey(surveyUid, aDataObject))\n\n\n13.3.2 fc_labeler_fishSample\nThis function creates a label for each fish sample to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a dataframe of fish samples in the analysis taken from the data object. The label returned is structured like:\n\nWB=2832 | Method=45 | 2022-03-11 | Station=627\n\nExample:\nsome_data %&gt;%\n  mutate(sampleLabel=fc_labeler_fishSample(surveyUid, aDataObject$get_data_samplesFish))\n\n\n13.3.3 fc_labeler_wqSample\nThis function creates a label for each fish sample to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a dataframe of fish samples in the analysis taken from the data object. The label returned is structured like:\n\nWB=2832 | 2022-03-11 | Station=627\n\nExample:\nsome_data %&gt;%\n  mutate(sampleLabel=fc_labeler_wqSample(surveyUid, aDataObject$get_data_samplesWq))\n\n\n13.3.4 fc_matchCodes\nwww\n\n\n13.3.5 fc_createCodeLabel\nwww\n\n\n13.3.6 fc_createCodeLabelReversed\nwww"
   },
   {
     "objectID": "FinCatchAnalysis_3_CreateAnalysis.html",
     "href": "FinCatchAnalysis_3_CreateAnalysis.html",
-    "title": "11  Create Analysis",
+    "title": "14  Create Analysis",
     "section": "",
-    "text": "11.0.1 General\nAnalysis function calls are prefixed with “fca_” and object names are prefixed with “fc_”\nMake sure to test each analysis function for:\n\nData selected by surveys only\nData selected by samples only\nData selected by both surveys and samples\nFilters that return NO data\nSpecies in processing list and not in data\nSpecies not in processing list and in data\nWorks for both grouped by survey and ungrouped analysis, if not grouped by survey in fc_data$groupSurveys, surveyUid is set to “-1” during data download by the data object\n\n\n\n11.0.2 Steps\n\nCreate new r file names fc_analysisName.R (Easiest To Copy Existing Analysis and Modify)\nNo library statements should be included in R file. Instead, they need to be included in the package DESCRIPTION file.\nCreate/Modify the roxygen comments for procedure\nName/Rename function. Analysis functions are prefixed with “fca_” and the same base name as the “fc_” file.\nAll function calls require a FinCatch Data Object (fc_data) to be passed to an arguement named “myData”\nCheck that fish (or Wq) samples exist in the current dataset.\nSet grouping variables.\n\n\nTo group analysis calculations during analysis, use the dplyr verbs\n\n        group_by(across(all_of(myGroups))\n\nadd addition fields as necessary “group_by(across(all_of(myGroups), anotherFieldHere)”\n\n\nWrite analysis code\n\n\nAlways include Standard Error and Sample size (if appropriate), this allow users to calculate difference confidence intervals post hoc\nWhen including confidence intervals, include 95% and 80%\nMake sure to account for missing data in any input\n\n\nLabel values like survey, sample, species, waterbody, etc.\n\n\nLabelers exist for samples and surveys (make sure surveyUid’s are set to -1 if not grouping by survey\nHelper functions are available for coded values\n\n\nIf analysis is calculated (as opposed to raw data summations), screen out species NOT in the processing list. This is necessisary because species NOT in the list do not carry the assumption that all specimans for that species were processed.\nAttach all results to an analysis object (either base or custom). Example:\n\n    #create return object at beginning of function \n    (this allows errors and warnings to be added throughout survey)\n    op &lt;- fc_meanWeight$new()\n    op$analysisTitle = \"Mean Weight (Weighted)\"\n    op$exportName = \"MeanWeight\"\n    op$descriptionText = \"These results display weighted mean \n                          weight.  Calculations are weighted as \n                          only a non-proportional (i.e. first 10 fish \n                          per 10mm length group) number of fish \n                          are subsampled.\"\n    op$tableTitle &lt;- list(\"Weighted Mean Weight\")\n    op$groupByVars &lt;- \"speciesCode\"\n    op$groupSurveys &lt;- myData$groupSurveys\n    \n    #during function, add warnings and errors to return object\n    op$errors &lt;- rlist::list.append(op$errors, \"Error1 Message\", \"Error2 Message\")\n    op$warnings &lt;- rlist::list.append(op$warnings, \"Warning1\")\n    \n    #at end of function, add results to return object\n    op$results &lt;- list(data.frame(d))\n    op$plots &lt;- myPlots\n    \n\nAdd the function to the list of analysis functions available in the package (found in inst folder). This list is used to populate the FinCatchRA UI and to feed the fc_getAvailableAnalysis function.\n\n\n\n11.0.3 Create Custom Analysis R6 Object\nAll analysis results are returned using R6 objects. This allows for consistent use and implementation of different analysis functions by parent applications and code. A base R6 object, “fc_base”, provides all the basic functions and structure for FinCatch analysis objects. Custom objects can be created in the analysis files to allow customized output tables and plots and MUST inherit from the fc_base object.\nColumn names will often need to be altered to provided user friendly text in the outputs. In addition, sometimes valuable columns are dropped for display purposes. Both of these should be done in the analysis output object createTable functions, NOT in the analysis function itself or in the “results” property of the output object. This is to provide for consistency between analyses and is important for the download function of FinCatchRA.\nEvery effort is made to ensure tables produced by analysis objects work in both HTML (which allows more formatting options and used by FinCatchRA) and in LaTex (for PDF report generation). Basic table creation should happen by providing a “CreateTable” function. Any additional work needed for specific HTML or LaTex output should be included in overridden “CreateTableHtml” or “CreateTableLatex” functions….which otherwise just call and return the “CreateTable” function by default.\nfc_counts &lt;- R6Class(\"fc_counts\",\n                    inherit = fc_base,\n                    public = list(\n                      createTable = function(mySurveyUid, myTableNumber) {\n                          #if data was selected by samples only…all surveyUids will be blank\n                      op &lt;- NA\n\n                      thisSurveyLabel &lt;- (self$results[[myTableNumber]] %&gt;%                                 filter(surveyUid == mySurveyUid) %&gt;%\n                        pull(surveyLabel))[[1]]\n                        \n                      op &lt;- self$results[[myTableNumber]] %&gt;%\n                        filter(surveyUid == mySurveyUid) %&gt;%\n                        group_by(countSpeciesLabel, sampleLabel) %&gt;%\n                        summarise(FishCount = sum(FishCount, na.rm = TRUE)) %&gt;%\n                        mutate(countGenderLabel = \"Total\") %&gt;%\n                        bind_rows(self$results[[myTableNumber]]  %&gt;%\n                        filter(surveyUid == mySurveyUid)) %&gt;%\n                        arrange(countSpeciesLabel, sampleLabel, countGenderLabel) %&gt;%\n                        select(-countSpeciesCode,-countGenderCode,-sampleUid,-surveyLabel,-surveyUid) %&gt;% \n                        spread(countGenderLabel, FishCount, fill = 0) %&gt;%\n                        relocate(\"Total\", .after = last_col()) %&gt;%\n                        gt(rowname_col = colnames(self$results[[1]])[8]) %&gt;%\n                          tab_options(\n                            row_group.background.color = self$groupHeaderBackgroundColor,\n                            summary_row.background.color = self$groupSummaryBackgroundColor\n                            ) %&gt;% \n                          tab_header(title = md(self$tableTitle),\n                                    subtitle = thisSurveyLabel) %&gt;%\n                          summary_rows(groups = TRUE,\n                                      columns = everything(),\n                                      fns = list(\"Total\" = \"sum\"),\n                                      formatter = fmt_integer,\n                                      use_seps = TRUE,\n                                      missing_text = \"\") %&gt;%\n                          self$gtTheme()\n                          \n                        return(op)\n                      }\n                    ))"
+    "text": "14.0.1 General\nAnalysis function calls are prefixed with “fca_” and object names are prefixed with “fc_”\nMake sure to test each analysis function for:\n\nData selected by surveys only\nData selected by samples only\nData selected by both surveys and samples\nFilters that return NO data\nSpecies in processing list and not in data\nSpecies not in processing list and in data\nWorks for both grouped by survey and ungrouped analysis, if not grouped by survey in fc_data$groupSurveys, surveyUid is set to “-1” during data download by the data object\n\n\n\n14.0.2 Steps\n\nCreate new r file names fc_analysisName.R (Easiest To Copy Existing Analysis and Modify)\nNo library statements should be included in R file. Instead, they need to be included in the package DESCRIPTION file.\nCreate/Modify the roxygen comments for procedure\nName/Rename function. Analysis functions are prefixed with “fca_” and the same base name as the “fc_” file.\nAll function calls require a FinCatch Data Object (fc_data) to be passed to an arguement named “myData”\nCheck that fish (or Wq) samples exist in the current dataset.\nSet grouping variables.\n\n\nTo group analysis calculations during analysis, use the dplyr verbs\n\n        group_by(across(all_of(myGroups))\n\nadd addition fields as necessary “group_by(across(all_of(myGroups), anotherFieldHere)”\n\n\nWrite analysis code\n\n\nAlways include Standard Error and Sample size (if appropriate), this allow users to calculate difference confidence intervals post hoc\nWhen including confidence intervals, include 95% and 80%\nMake sure to account for missing data in any input\n\n\nLabel values like survey, sample, species, waterbody, etc.\n\n\nLabelers exist for samples and surveys (make sure surveyUid’s are set to -1 if not grouping by survey\nHelper functions are available for coded values\n\n\nIf analysis is calculated (as opposed to raw data summations), screen out species NOT in the processing list. This is necessisary because species NOT in the list do not carry the assumption that all specimans for that species were processed.\nAttach all results to an analysis object (either base or custom). Example:\n\n    #create return object at beginning of function \n    (this allows errors and warnings to be added throughout survey)\n    op &lt;- fc_meanWeight$new()\n    op$analysisTitle = \"Mean Weight (Weighted)\"\n    op$exportName = \"MeanWeight\"\n    op$descriptionText = \"These results display weighted mean \n                          weight.  Calculations are weighted as \n                          only a non-proportional (i.e. first 10 fish \n                          per 10mm length group) number of fish \n                          are subsampled.\"\n    op$tableTitle &lt;- list(\"Weighted Mean Weight\")\n    op$groupByVars &lt;- \"speciesCode\"\n    op$groupSurveys &lt;- myData$groupSurveys\n    \n    #during function, add warnings and errors to return object\n    op$errors &lt;- rlist::list.append(op$errors, \"Error1 Message\", \"Error2 Message\")\n    op$warnings &lt;- rlist::list.append(op$warnings, \"Warning1\")\n    \n    #at end of function, add results to return object\n    op$results &lt;- list(data.frame(d))\n    op$plots &lt;- myPlots\n    \n\nAdd the function to the list of analysis functions available in the package (found in inst folder). This list is used to populate the FinCatchRA UI and to feed the fc_getAvailableAnalysis function.\n\n\n\n14.0.3 Create Custom Analysis R6 Object\nAll analysis results are returned using R6 objects. This allows for consistent use and implementation of different analysis functions by parent applications and code. A base R6 object, “fc_base”, provides all the basic functions and structure for FinCatch analysis objects. Custom objects can be created in the analysis files to allow customized output tables and plots and MUST inherit from the fc_base object.\nColumn names will often need to be altered to provided user friendly text in the outputs. In addition, sometimes valuable columns are dropped for display purposes. Both of these should be done in the analysis output object createTable functions, NOT in the analysis function itself or in the “results” property of the output object. This is to provide for consistency between analyses and is important for the download function of FinCatchRA.\nEvery effort is made to ensure tables produced by analysis objects work in both HTML (which allows more formatting options and used by FinCatchRA) and in LaTex (for PDF report generation). Basic table creation should happen by providing a “CreateTable” function. Any additional work needed for specific HTML or LaTex output should be included in overridden “CreateTableHtml” or “CreateTableLatex” functions….which otherwise just call and return the “CreateTable” function by default.\nfc_counts &lt;- R6Class(\"fc_counts\",\n                    inherit = fc_base,\n                    public = list(\n                      createTable = function(mySurveyUid, myTableNumber) {\n                          #if data was selected by samples only…all surveyUids will be blank\n                      op &lt;- NA\n\n                      thisSurveyLabel &lt;- (self$results[[myTableNumber]] %&gt;%                                 filter(surveyUid == mySurveyUid) %&gt;%\n                        pull(surveyLabel))[[1]]\n                        \n                      op &lt;- self$results[[myTableNumber]] %&gt;%\n                        filter(surveyUid == mySurveyUid) %&gt;%\n                        group_by(countSpeciesLabel, sampleLabel) %&gt;%\n                        summarise(FishCount = sum(FishCount, na.rm = TRUE)) %&gt;%\n                        mutate(countGenderLabel = \"Total\") %&gt;%\n                        bind_rows(self$results[[myTableNumber]]  %&gt;%\n                        filter(surveyUid == mySurveyUid)) %&gt;%\n                        arrange(countSpeciesLabel, sampleLabel, countGenderLabel) %&gt;%\n                        select(-countSpeciesCode,-countGenderCode,-sampleUid,-surveyLabel,-surveyUid) %&gt;% \n                        spread(countGenderLabel, FishCount, fill = 0) %&gt;%\n                        relocate(\"Total\", .after = last_col()) %&gt;%\n                        gt(rowname_col = colnames(self$results[[1]])[8]) %&gt;%\n                          tab_options(\n                            row_group.background.color = self$groupHeaderBackgroundColor,\n                            summary_row.background.color = self$groupSummaryBackgroundColor\n                            ) %&gt;% \n                          tab_header(title = md(self$tableTitle),\n                                    subtitle = thisSurveyLabel) %&gt;%\n                          summary_rows(groups = TRUE,\n                                      columns = everything(),\n                                      fns = list(\"Total\" = \"sum\"),\n                                      formatter = fmt_integer,\n                                      use_seps = TRUE,\n                                      missing_text = \"\") %&gt;%\n                          self$gtTheme()\n                          \n                        return(op)\n                      }\n                    ))"
   },
   {
     "objectID": "FinCatchAccess_0.html#packages",
@@ -222,54 +285,5 @@
     "title": "Data Access R Package",
     "section": "Principles",
     "text": "Principles\nBy Using myData Object:\n\nOnly data that’s needed is loaded\nData is cached\nData is only retrieved once for entire analysis string\n\nBy Using Separate Data Access Package:\n\nIsolates and generalizes data access\nAllows analysis code to use different sources of data\nAllows different scripts to use different authentications for data access"
-  },
-  {
-    "objectID": "FinCatchAnalysis_DataObject.html#creating-fincatch-data-objects",
-    "href": "FinCatchAnalysis_DataObject.html#creating-fincatch-data-objects",
-    "title": "6  Data Object",
-    "section": "6.1 Creating FinCatch Data Objects",
-    "text": "6.1 Creating FinCatch Data Objects"
-  },
-  {
-    "objectID": "FinCatchAnalysis_DataObject.html#data-caching-and-retrieval",
-    "href": "FinCatchAnalysis_DataObject.html#data-caching-and-retrieval",
-    "title": "6  Data Object",
-    "section": "6.2 Data Caching And Retrieval",
-    "text": "6.2 Data Caching And Retrieval\nData is cached in the “data_…” and “codes_…” properties of the object. Data and codes are retrieved from the data object using the “get_data_…” and “get_codes_…” functions. These “get_” functions first check for cached data in the “data_” objects and returns it; otherwise they will retrieve it from the database, cache it in the “data_” objects, and return it. The names of “get_” functions match their counterparts in the “data_” objects. The “data_” objects are exposed to users (rather than hiding them as private objects) so that advanced users can utilize the FinCatchAnalysis package and the data object by directly saving data to the cache.\n\n\n\n\n\n\nRetrieving Data\n\n\n\nData should always be retrieved using “get_” functions, so that caching works. Trying to retrieve data directly from the “data_” and “code_” cache objects opens up logic errors where lack of data and yet-to-be retrieved data are confused and confounded.\n\n\n\n\n\n\n\n\nCaution\n\n\n\nWhile data column names may be renamed and table structures combined and split during caching operations, data should not be modified in any way that introduce assumptions or potential bias. These type of operations should use “get_calc_” and “calc_” names as described below!"
-  },
-  {
-    "objectID": "FinCatchAnalysis_DataObject.html#calculated-data",
-    "href": "FinCatchAnalysis_DataObject.html#calculated-data",
-    "title": "6  Data Object",
-    "section": "6.3 Calculated Data",
-    "text": "6.3 Calculated Data\nCommonly used calculations are defined in the the data object so that they do not need to be repeated in the same analysis chain or report. One example would be length-frequency extrapolations when part of a fish sample are sub-sampled for length and then extrapolated by fish counts. These calculations are defined and retrieved in “get_calc_…” functions with their results cached in “data_…” objects similar to the “data_” and “code_” objects."
-  },
-  {
-    "objectID": "FinCatchAnalysis_DataObject.html#warnings-and-errors",
-    "href": "FinCatchAnalysis_DataObject.html#warnings-and-errors",
-    "title": "6  Data Object",
-    "section": "6.4 Warnings and Errors",
-    "text": "6.4 Warnings and Errors\nWarning and error properties exist in the data object. These accumulate potential issues encountered when retrieving data/codes from the database or when performing calculations (such as extrapolated length-freqencies from a small subsample). These errors are printed to the console when the FinCatchAnalysis package is used interactively.\n\n\n\n\n\n\nImportant\n\n\n\nWhen the FinCatchAnalysis package is used in a non-interactive environment like markdown, quarto, or shiny, it is important that these warnings and errors are explicitly and intentionally shown to the end user as part of the output!"
-  },
-  {
-    "objectID": "FinCatchAnalysis_DataObject.html#available-data",
-    "href": "FinCatchAnalysis_DataObject.html#available-data",
-    "title": "6  Data Object",
-    "section": "6.5 Available Data",
-    "text": "6.5 Available Data"
-  },
-  {
-    "objectID": "FinCatchAnalysis_DataObject.html#available-code",
-    "href": "FinCatchAnalysis_DataObject.html#available-code",
-    "title": "6  Data Object",
-    "section": "6.6 Available Code",
-    "text": "6.6 Available Code"
-  },
-  {
-    "objectID": "FinCatchAnalysis_DataObject.html#available-calcs",
-    "href": "FinCatchAnalysis_DataObject.html#available-calcs",
-    "title": "6  Data Object",
-    "section": "6.7 Available Calcs",
-    "text": "6.7 Available Calcs"
   }
 ]

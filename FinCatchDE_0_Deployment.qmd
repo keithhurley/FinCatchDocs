@@ -1,0 +1,77 @@
+# FinCatchDE Deployment
+
+## **Before Deployment**
+
+Change:
+
+1.       ConnectionString in AppSettings.json
+
+2.       redirectUri at line 45 in previousFishSamples
+
+3\.       redirectUri at line 164 in previousWaterSamples
+
+4.       auth0 settings in clsAuthFunctions, fetchController.cs, and index.tsx
+
+## **Deployment Steps**
+
+The application needs to be self-contained (See REF-3 and REF-4); you might want to investigate publishing the application through Visual Studio's IIS publishing, but this is the way that has worked best for our development.
+
+1.       Open the Projects in Visual Studio
+
+2.       Ensure the application runs locally through Visual Studio
+
+3.       Right click the solution and select Publish\...
+
+4.       Select the Web Server (IIS) Target
+
+5.       Select Web Deploy Package
+
+6.       Put the package location in the same folder as the project
+
+7.       Any name will do for the Site Name, we did Fish-Test, and click finish
+
+8.       Select Show All Settings
+
+9.       Change Deployment mode to Self-contained
+
+10.    Change the target runtime to the required runtime (for us that was win-x64)
+
+11.    Select Save
+
+12.    Click the Publish button
+
+13.    Wait for the Publish to be successful
+
+14.    Open the Console/Git Bash/PowerShell
+
+15.    Navigate to fisheries-field-sampling\\FisheriesFieldSampling\\FisheriesFieldSampling\\client-app\\ 
+
+16.    Run npm run build
+
+17.    Open File Explorer
+
+18.    Navigate to fisheries-field-sampling\\FisheriesFieldSampling\\FisheriesFieldSampling\\client-app\\
+
+19.    Copy the build folder within the project
+
+20.    Navigate to the newly created zip file from the Publish button
+
+21.    Extract into a folder named publish
+
+22.    Navigate to publish\\Content\\D_C\\GitHub\\fish-test\\fisheries-field-sampling\\FisheriesFieldSampling\\FisheriesFieldSampling\\obj\\Release\\netcoreapp3.1\\win-x64\\PubTmp\\Out\\client-app folder
+
+23.    Replace the build folder with the copied build folder
+
+24.    Copy everything within the publish\\Content\\D_C\\GitHub\\fish-test\\fisheries-field-sampling\\FisheriesFieldSampling\\FisheriesFieldSampling\\obj\\Release\\netcoreapp3.1\\win-x64\\PubTmp\\Out\\ folder
+
+25.    Open Remote Desktop
+
+26.    Connect to the fincatchag.fishstaff.info computer
+
+27.    Open the file explorer on the Remote Desktop
+
+28.    Replace the contents of C:\\Websites\\FinCatchDE with the copied files/folders
+
+29.    Open the IIS Manager
+
+30.    Restart the FinCatchDE website

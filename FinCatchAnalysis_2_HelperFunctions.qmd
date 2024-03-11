@@ -41,7 +41,7 @@ some_data %>%
 
 ### fca_getAnalysisFunctions
 
-This function returns a list and description of the analysis functions available in the FinCatchAnalysis package. 
+This function returns a list and description of the analysis functions available in the FinCatchAnalysis package.
 
 Example:
 
@@ -55,7 +55,7 @@ fca_getAnalysisFunctions()
 
 This function creates a label for each survey to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a reference to the analysis data object. The label returned is structured like:
 
->Title1 (WB=5110 | Method=21 |  Year=2022 | Season=Spring)
+> Title1 (WB=5110 \| Method=21 \| Year=2022 \| Season=Spring)
 
 Example:
 
@@ -68,7 +68,7 @@ some_data %>%
 
 This function creates a label for each fish sample to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a dataframe of fish samples in the analysis taken from the data object. The label returned is structured like:
 
->WB=2832 | Method=45 | 2022-03-11 | Station=627
+> WB=2832 \| Method=45 \| 2022-03-11 \| Station=627
 
 Example:
 
@@ -79,10 +79,9 @@ some_data %>%
 
 ### fc_labeler_wqSample
 
-
 This function creates a label for each fish sample to be used in outputs such as reports and plots. The arguments are a vector of surveyUid values and a dataframe of fish samples in the analysis taken from the data object. The label returned is structured like:
 
->WB=2832 | 2022-03-11 | Station=627
+> WB=2832 \| 2022-03-11 \| Station=627
 
 Example:
 

@@ -15,6 +15,9 @@ book:
         - FinCatch_SamplingRestrictions.qmd
         - FinCatch_DataDesign.qmd
         - FinCatch_Architecture.qmd
+    - part: FinCatchDE
+      chapters: 
+        - FinCatchDE_0_Deployment.qmd
     - part: Analysis R Package
       chapters:
         - FinCatchAnalysis_0.qmd

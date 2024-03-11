@@ -36,31 +36,31 @@ Make sure to test each analysis function for:
 
 7.  Set grouping variables.
 
-  -   To group analysis calculations during analysis, use the dplyr verbs
+-   To group analysis calculations during analysis, use the dplyr verbs
 
 ``` r
         group_by(across(all_of(myGroups))
 ```
 
-  -   add addition fields as necessary "group_by(across(all_of(myGroups), anotherFieldHere)"
+-   add addition fields as necessary "group_by(across(all_of(myGroups), anotherFieldHere)"
 
 8.  Write analysis code
 
-  -   Always include Standard Error and Sample size (if appropriate), this allow users to calculate difference confidence intervals post hoc
+-   Always include Standard Error and Sample size (if appropriate), this allow users to calculate difference confidence intervals post hoc
 
-  -   When including confidence intervals, include 95% and 80%
+-   When including confidence intervals, include 95% and 80%
 
-  -   Make sure to account for missing data in any input
+-   Make sure to account for missing data in any input
 
 9.  Label values like survey, sample, species, waterbody, etc.
 
-  -   Labelers exist for samples and surveys (make sure surveyUid's are set to -1 if not grouping by survey
+-   Labelers exist for samples and surveys (make sure surveyUid's are set to -1 if not grouping by survey
 
-  -   Helper functions are available for coded values
+-   Helper functions are available for coded values
 
-10.  If analysis is calculated (as opposed to raw data summations), screen out species NOT in the processing list.  This is necessisary because species NOT in the list do not carry the assumption that all specimans for that species were processed.
+10. If analysis is calculated (as opposed to raw data summations), screen out species NOT in the processing list. This is necessisary because species NOT in the list do not carry the assumption that all specimans for that species were processed.
 
-11.  Attach all results to an analysis object (either base or custom). Example:
+11. Attach all results to an analysis object (either base or custom). Example:
 
 ``` r
     #create return object at beginning of function 
@@ -87,7 +87,7 @@ Make sure to test each analysis function for:
     
 ```
 
-12. Add the function to the list of analysis functions available in the package (found in inst folder).  This list is used to populate the FinCatchRA UI and to feed the fc_getAvailableAnalysis function.
+12. Add the function to the list of analysis functions available in the package (found in inst folder). This list is used to populate the FinCatchRA UI and to feed the fc_getAvailableAnalysis function.
 
 ### Create Custom Analysis R6 Object
 

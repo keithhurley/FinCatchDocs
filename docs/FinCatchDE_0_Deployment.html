@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FinCatch Documentation - References</title>
+<title>FinCatch Documentation - 5&nbsp; FinCatchDE Deployment</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./FinCatchAccess_0.html" rel="prev">
+<link href="./FinCatchAnalysis_0.html" rel="next">
+<link href="./FinCatch_Architecture.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -91,7 +73,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./FinCatchDE_0_Deployment.html">FinCatchDE</a></li><li class="breadcrumb-item"><a href="./FinCatchDE_0_Deployment.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FinCatchDE Deployment</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -168,7 +150,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FinCatchDE_0_Deployment.html" class="sidebar-item-text sidebar-link">
+  <a href="./FinCatchDE_0_Deployment.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FinCatchDE Deployment</span></span></a>
   </div>
 </li>
@@ -253,14 +235,21 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#before-deployment" id="toc-before-deployment" class="nav-link active" data-scroll-target="#before-deployment"><span class="header-section-number">5.1</span> <strong>Before Deployment</strong></a></li>
+  <li><a href="#deployment-steps" id="toc-deployment-steps" class="nav-link" data-scroll-target="#deployment-steps"><span class="header-section-number">5.2</span> <strong>Deployment Steps</strong></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FinCatchDE Deployment</span></h1>
 </div>
 
 
@@ -275,11 +264,50 @@ div.csl-indent {
 
 </header>
 
-<div id="refs" role="list" style="display: none">
+<section id="before-deployment" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="before-deployment"><span class="header-section-number">5.1</span> <strong>Before Deployment</strong></h2>
+<p>Change:</p>
+<p>1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ConnectionString in AppSettings.json</p>
+<p>2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; redirectUri at line 45 in previousFishSamples</p>
+<p>3. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redirectUri at line 164 in previousWaterSamples</p>
+<p>4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; auth0 settings in clsAuthFunctions, fetchController.cs, and index.tsx</p>
+</section>
+<section id="deployment-steps" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="deployment-steps"><span class="header-section-number">5.2</span> <strong>Deployment Steps</strong></h2>
+<p>The application needs to be self-contained (See REF-3 and REF-4); you might want to investigate publishing the application through Visual Studio’s IIS publishing, but this is the way that has worked best for our development.</p>
+<p>1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Open the Projects in Visual Studio</p>
+<p>2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ensure the application runs locally through Visual Studio</p>
+<p>3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Right click the solution and select Publish...</p>
+<p>4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Select the Web Server (IIS) Target</p>
+<p>5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Select Web Deploy Package</p>
+<p>6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Put the package location in the same folder as the project</p>
+<p>7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Any name will do for the Site Name, we did Fish-Test, and click finish</p>
+<p>8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Select Show All Settings</p>
+<p>9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Change Deployment mode to Self-contained</p>
+<p>10.&nbsp;&nbsp;&nbsp; Change the target runtime to the required runtime (for us that was win-x64)</p>
+<p>11.&nbsp;&nbsp;&nbsp; Select Save</p>
+<p>12.&nbsp;&nbsp;&nbsp; Click the Publish button</p>
+<p>13.&nbsp;&nbsp;&nbsp; Wait for the Publish to be successful</p>
+<p>14.&nbsp;&nbsp;&nbsp; Open the Console/Git Bash/PowerShell</p>
+<p>15.&nbsp;&nbsp;&nbsp; Navigate to fisheries-field-sampling\FisheriesFieldSampling\FisheriesFieldSampling\client-app\&nbsp;</p>
+<p>16.&nbsp;&nbsp;&nbsp; Run npm run build</p>
+<p>17.&nbsp;&nbsp;&nbsp; Open File Explorer</p>
+<p>18.&nbsp;&nbsp;&nbsp; Navigate to fisheries-field-sampling\FisheriesFieldSampling\FisheriesFieldSampling\client-app\</p>
+<p>19.&nbsp;&nbsp;&nbsp; Copy the build folder within the project</p>
+<p>20.&nbsp;&nbsp;&nbsp; Navigate to the newly created zip file from the Publish button</p>
+<p>21.&nbsp;&nbsp;&nbsp; Extract into a folder named publish</p>
+<p>22.&nbsp;&nbsp;&nbsp; Navigate to publish\Content\D_C\GitHub\fish-test\fisheries-field-sampling\FisheriesFieldSampling\FisheriesFieldSampling\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\client-app folder</p>
+<p>23.&nbsp;&nbsp;&nbsp; Replace the build folder with the copied build folder</p>
+<p>24.&nbsp;&nbsp;&nbsp; Copy everything within the publish\Content\D_C\GitHub\fish-test\fisheries-field-sampling\FisheriesFieldSampling\FisheriesFieldSampling\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\ folder</p>
+<p>25.&nbsp;&nbsp;&nbsp; Open Remote Desktop</p>
+<p>26.&nbsp;&nbsp;&nbsp; Connect to the fincatchag.fishstaff.info computer</p>
+<p>27.&nbsp;&nbsp;&nbsp; Open the file explorer on the Remote Desktop</p>
+<p>28.&nbsp;&nbsp;&nbsp; Replace the contents of C:\Websites\FinCatchDE with the copied files/folders</p>
+<p>29.&nbsp;&nbsp;&nbsp; Open the IIS Manager</p>
+<p>30.&nbsp;&nbsp;&nbsp; Restart the FinCatchDE website</p>
 
-</div>
 
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -517,11 +545,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./FinCatchAccess_0.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Data Access R Package</span>
+      <a href="./FinCatch_Architecture.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Architecture</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./FinCatchAnalysis_0.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Overview</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
