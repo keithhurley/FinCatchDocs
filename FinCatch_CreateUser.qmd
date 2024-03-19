@@ -1,0 +1,21 @@
+# FinCatch Users
+
+## Auth0 User Authentication
+
+FinCatch uses the Auth0 (https://www.auth0.com) for authentication and authorization. At-will, user-requested new user creation is not supported. New users can be created by a tenant admin with Auth0. Users will be sent an email to verify their address and future FinCatch usage is not possible until the verification is complete. Users should also be assigned the appropiate authorization roles.
+
+## FinCatch User
+
+In addition to Auth0 user authentication, FinCatch website, FinCatchAG, and FinCatchRA users will also need a profile in the FinCatch system. This profile is meant to decouple FinCatch from the Auth0 system in case a new authentication service needs to be implemented. Upon the first login to the FinCatch website, a new Auth0 user with a verified email will be redirected to a page to create their profile. After creation of their profile, a FinCatch DataAdmin will need to log in and "Activate" their profile.
+
+## How to Create A New User
+
+1\) FinCatch administrator logs into Auth0 and creates new user. The appropiate roles (DataAdmin, DataWorker, DataSupervisor) should be added to the new user. The new user will need to be supplied their password.
+
+2\) New user will receive an email with instructions on how to verify their email address. The must complete the verification process.
+
+3\) New user should log into https://FinCatch.outdoornebraska.gov using the password supplied by the FinCatch administrator.
+
+4\) Upon logging in, the new user will be redirected to a page to complete their FinCatch profile.
+
+5\) A FinCatch administrator must login and activate the new user's profile.
