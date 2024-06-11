@@ -20,6 +20,42 @@ Make sure to test each analysis function for:
 
 -   Works for both grouped by survey and ungrouped analysis, if not grouped by survey in fc_data\$groupSurveys, surveyUid is set to "-1" during data download by the data object
 
+### Flow and Critical Issues
+
+-   Import Data
+
+    -   Make sure to use remove_nonCPUE_data as appropiate in get_data\_ functions
+
+        ::: callout-important
+        use remove_nonCPUE_data=FALSE to get all data if appropriate, specify remove_nonCPUE_data=TRUE for readability (is default if not specified)
+        :::
+
+    -   Check For Empty/Missing Stations using ??? function
+
+-   Conduct Analysis
+
+    -   Expand to account for missing 0's using AddZerosForMissingSpecies() function
+
+-   Finish Analysis
+
+    -   Label survey UIDs, sample UIDs, species, and methods
+
+    -   ::: callout-note
+        Useful Functions:
+
+        fc_labeler_Survey
+
+        fc_labeler_fishSample
+
+        fc_labeler_wqSample
+
+        fc_matchCodes
+
+        fc_createCodeLabel
+
+        fc_createCodeLabelReversed
+        :::
+
 ### Steps
 
 1.  Create new r file names fc_analysisName.R (Easiest To Copy Existing Analysis and Modify)
