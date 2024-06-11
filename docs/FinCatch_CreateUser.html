@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FinCatch Documentation - 11&nbsp; Base Object</title>
+<title>FinCatch Documentation - 5&nbsp; FinCatch Users</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./FinCatchAnalysis_1_Objects.html" rel="next">
-<link href="./FinCatchAnalysis_0_ExampleScript.html" rel="prev">
+<link href="./FinCatchDE_0_Deployment.html" rel="next">
+<link href="./FinCatch_Architecture.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0.html">Analysis R Package</a></li><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0_BaseObject.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Base Object</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">FinCatch System</a></li><li class="breadcrumb-item"><a href="./FinCatch_CreateUser.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FinCatch Users</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -147,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FinCatch_CreateUser.html" class="sidebar-item-text sidebar-link">
+  <a href="./FinCatch_CreateUser.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FinCatch Users</span></span></a>
   </div>
 </li>
@@ -205,7 +205,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./FinCatchAnalysis_0_BaseObject.html" class="sidebar-item-text sidebar-link active">
+  <a href="./FinCatchAnalysis_0_BaseObject.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Base Object</span></span></a>
   </div>
 </li>
@@ -253,21 +253,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose"><span class="header-section-number">11.1</span> Purpose</a>
-  <ul class="collapse">
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="header-section-number">11.1.1</span> Variables</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">11.1.2</span> Methods</a></li>
-  </ul></li>
-  <li><a href="#overriding-base-object" id="toc-overriding-base-object" class="nav-link" data-scroll-target="#overriding-base-object"><span class="header-section-number">11.2</span> Overriding Base Object</a></li>
+  <li><a href="#auth0-user-authentication" id="toc-auth0-user-authentication" class="nav-link active" data-scroll-target="#auth0-user-authentication"><span class="header-section-number">5.1</span> Auth0 User Authentication</a></li>
+  <li><a href="#fincatch-user" id="toc-fincatch-user" class="nav-link" data-scroll-target="#fincatch-user"><span class="header-section-number">5.2</span> FinCatch User</a></li>
+  <li><a href="#how-to-create-a-new-user" id="toc-how-to-create-a-new-user" class="nav-link" data-scroll-target="#how-to-create-a-new-user"><span class="header-section-number">5.3</span> How to Create A New User</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0.html">Analysis R Package</a></li><li class="breadcrumb-item"><a href="./FinCatchAnalysis_0_BaseObject.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Base Object</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">FinCatch System</a></li><li class="breadcrumb-item"><a href="./FinCatch_CreateUser.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FinCatch Users</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Base Object</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FinCatch Users</span></h1>
 </div>
 
 
@@ -284,48 +281,21 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="purpose" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">11.1</span> Purpose</h2>
-<p>Provides a common interface for results regardless of what analysis is run.</p>
-<section id="variables" class="level3" data-number="11.1.1">
-<h3 data-number="11.1.1" class="anchored" data-anchor-id="variables"><span class="header-section-number">11.1.1</span> Variables</h3>
-<ul>
-<li><p>analysisTitle - (string) Description of the analysis stored in the object, used for headers and titles in reports and displays</p></li>
-<li><p>exportName - (string) Name used when generating file download names, no spaces or punctuation should be used</p></li>
-<li><p>descriptionText - (string) Markdown text to be displayed in outputs prior to the output tables and figures</p></li>
-<li><p>tableTitle- (list&lt;string&gt;) Title text to be used on object tables, each item in list corresponds to one table output in printTables</p></li>
-<li><p>groupByVars - (string) Comma-separated string of variable name to use as grouping variables within the tables</p></li>
-<li><p>surveys - (dataframe) Dataframe containing survey-level data</p></li>
-<li><p>samples - (dataframe) Dataframe containing samples</p></li>
-<li><p>results - (list&lt;dataframes&gt;) List of dataframes containing results of analysis</p></li>
-<li><p>plots - (list&lt;ggplot objects&gt;) List of ggPlot objects created from analysis</p></li>
-<li><p>errors - (list&lt;string&gt;) Error messages created during analysis</p></li>
-<li><p>warnings- (list&lt;string&gt;) Warning messages created during analysis</p></li>
-<li><p>groupHeaderBackgroundColor - (string) Color to be used in background of group header within table, groups are determined by the groupByVars variable, used in HTML outputs only</p></li>
-<li><p>groupSummaryBackgroundColor - (string) Color to be used in the summary row of each group within table, groups are determined by the groupByVars variable, used in HTML outputs only</p></li>
-<li><p>gtTheme - (string) Name of gt tables theme from the gtExtras package, used in HTML outputs only</p></li>
-</ul>
+<section id="auth0-user-authentication" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="auth0-user-authentication"><span class="header-section-number">5.1</span> Auth0 User Authentication</h2>
+<p>FinCatch uses the Auth0 (https://www.auth0.com) for authentication and authorization. At-will, user-requested new user creation is not supported. New users can be created by a tenant admin with Auth0. Users will be sent an email to verify their address and future FinCatch usage is not possible until the verification is complete. Users should also be assigned the appropiate authorization roles.</p>
 </section>
-<section id="methods" class="level3" data-number="11.1.2">
-<h3 data-number="11.1.2" class="anchored" data-anchor-id="methods"><span class="header-section-number">11.1.2</span> Methods</h3>
-<ul>
-<li><p>print - method used by R to print the results variable</p></li>
-<li><p>exportJson - method used to create and save Json file of results, no default implementation</p></li>
-<li><p>exportCsv - method used to create and save Csv file of results, no default implementation</p></li>
-<li><p>createTable - generic table to create both Latex and Html tables for object</p></li>
-<li><p>createTableLatex - creates table formatted for Latex, default implementation simply calls and returns createTable</p></li>
-<li><p>createTableHtml - creates table formatted for Html, default implementation simply calls and returns createTable</p></li>
-<li><p>printTablesLatex - called to output all tables in a LaTex format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs</p></li>
-<li><p>printTablesHtml - called to output all tables in a Html format, this does not include any formatting or table specific code which is included in the createTable? functions, but instead iterates through multiple table outputs</p></li>
-<li><p>printTablesAuto - tests the incoming call for a LaTex environment and calls either printTablesLatex or printTablesHtml as appropiate, used for markdown reports that can be user-generated in mulitple formats</p></li>
-<li><p>iterateSurvey - a generic function that crawls through two loops, one for survey groups, one for specific tables (one analysis may output mulitiple tables) and is called by the printTable functions</p></li>
-<li><p>printPlots - called to output ggplot outputs stored as part of analysis</p></li>
-</ul>
+<section id="fincatch-user" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="fincatch-user"><span class="header-section-number">5.2</span> FinCatch User</h2>
+<p>In addition to Auth0 user authentication, FinCatch website, FinCatchAG, and FinCatchRA users will also need a profile in the FinCatch system. This profile is meant to decouple FinCatch from the Auth0 system in case a new authentication service needs to be implemented. Upon the first login to the FinCatch website, a new Auth0 user with a verified email will be redirected to a page to create their profile. After creation of their profile, a FinCatch DataAdmin will need to log in and “Activate” their profile.</p>
 </section>
-</section>
-<section id="overriding-base-object" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="overriding-base-object"><span class="header-section-number">11.2</span> Overriding Base Object</h2>
-<p>The fc_base object can be extended and customized to produce objects for specific analysis. See details in “Creating Analyis Chapter”.</p>
+<section id="how-to-create-a-new-user" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="how-to-create-a-new-user"><span class="header-section-number">5.3</span> How to Create A New User</h2>
+<p>1) FinCatch administrator logs into Auth0 and creates new user. The appropiate roles (DataAdmin, DataWorker, DataSupervisor) should be added to the new user. The new user will need to be supplied their password.</p>
+<p>2) New user will receive an email with instructions on how to verify their email address. The must complete the verification process.</p>
+<p>3) New user should log into https://FinCatch.outdoornebraska.gov using the password supplied by the FinCatch administrator.</p>
+<p>4) Upon logging in, the new user will be redirected to a page to complete their FinCatch profile.</p>
+<p>5) A FinCatch administrator must login and activate the new user’s profile.</p>
 
 
 </section>
@@ -720,13 +690,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./FinCatchAnalysis_0_ExampleScript.html" class="pagination-link" aria-label="Example Script">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Example Script</span></span>
+      <a href="./FinCatch_Architecture.html" class="pagination-link" aria-label="Architecture">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Architecture</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./FinCatchAnalysis_1_Objects.html" class="pagination-link" aria-label="Objects">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Objects</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./FinCatchDE_0_Deployment.html" class="pagination-link" aria-label="FinCatchDE Deployment">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">FinCatchDE Deployment</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
