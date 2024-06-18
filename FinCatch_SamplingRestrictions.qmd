@@ -4,6 +4,8 @@
 
 -   All weight and age subsampling may occur at the SAMPLE or SURVEY level.
 
+-   All weight and age subsampling must include fish length (length-freq) for non-subsampled fish. Non-subsampled fish CAN NOT simply be counted.
+
 -   Every individual of a species in the processed species list has either been measured or counted. If "All Species" (code 0) is in the processed species list, EVERY individual encountered during sampling was either measured or counted.
 
 -   Odd species (those not found in the processed species list) may be measured or counted and entered into FinCatch. However, they will only be reported in raw data summaries and NOT included in calculations and analysis as they cannot be assumed to have been collected in their entirety (i.e. all individuals in all samples).
